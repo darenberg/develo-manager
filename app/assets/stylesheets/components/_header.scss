@@ -1,0 +1,46 @@
+element.style {
+  background-image: url('header.jpg');
+}
+
+@media (min-width: 992px) {
+  header.masthead {
+    height: 100vh;
+    min-height: 650px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+header.masthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+  background-position: center center;
+  background-size: cover;
+}
+
+.text-white {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+::selection {
+  color: #fff;
+  background: #212529;
+  text-shadow: none;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.my-auto {
+  background-color: rgba(255, 148, 54, 0.6);
+}
