@@ -44,6 +44,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_181843) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.string "content"
+    t.string "tags"
+    t.string "title"
     t.bigint "dot_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,9 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_181843) do
   end
 
   create_table "user_tasks", force: :cascade do |t|
-    t.string "content"
-    t.string "tags"
-    t.string "title"
     t.bigint "task_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
