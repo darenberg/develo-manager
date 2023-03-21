@@ -1,4 +1,4 @@
-<header class="text-center text-white d-flex masthead" style="background-image: url('https://d3kqdc25i4tl0t.cloudfront.net/articles/content/_379589_workspace.hero.jpg');">
+<header class="text-center text-white d-flex masthead pt-1" style="background-image: url('https://d3kqdc25i4tl0t.cloudfront.net/articles/content/_379589_workspace.hero.jpg');">
     <div class="container my-auto">
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -7,9 +7,12 @@
         </div>
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <p class="text-faded mb-5">Have all your projects in one place, track how every team member is doing their work and add relevant notes to each of your projects&#39; stages.</p><a class="btn btn-primary btn-xl" role="button" href="#services">Sign up</a>
+            <p class="text-faded mb-5">Have all your projects in one place, track how every team member is doing their work and add relevant notes to each of your projects&#39; stages.</p>
           </div>
         </div>
-
+        <%= link_to new_user_registration_path do %>
+          <button class="transparent-white-btn">Sign up!</button>
+        <% end %>
+      </div>
     </div>
 </header>
