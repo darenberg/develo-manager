@@ -1,0 +1,2 @@
+class UserTasksController < ApplicationController
+end
