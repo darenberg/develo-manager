@@ -10,45 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_221916) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_21_181843) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dots", force: :cascade do |t|
-    t.bigint "room_id", null: false
-    t.string "name"
+    t.bigint "plan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_dots_on_room_id"
+    t.index ["plan_id"], name: "index_dots_on_plan_id"
   end
 
-  create_table "notes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "content"
-    t.string "tag"
-    t.string "title"
-    t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notes_on_user_id"
-  end
-
-  create_table "project_admins", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "floors", force: :cascade do |t|
+    t.integer "number"
     t.bigint "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_admins_on_project_id"
-    t.index ["user_id"], name: "index_project_admins_on_user_id"
+    t.integer "fieldname"
+    t.index ["project_id"], name: "index_floors_on_project_id"
   end
 
-  create_table "project_members", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
+  create_table "plans", force: :cascade do |t|
+    t.bigint "floor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_members_on_project_id"
-    t.index ["user_id"], name: "index_project_members_on_user_id"
+    t.index ["floor_id"], name: "index_plans_on_floor_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -57,12 +43,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_221916) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.bigint "project_id", null: false
-    t.string "name"
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "dot_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_rooms_on_project_id"
+    t.index ["dot_id"], name: "index_tasks_on_dot_id"
+  end
+
+  create_table "user_tasks", force: :cascade do |t|
+    t.string "content"
+    t.string "tags"
+    t.string "title"
+    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_user_tasks_on_task_id"
+    t.index ["user_id"], name: "index_user_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,17 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_221916) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "dots", "rooms"
-  add_foreign_key "notes", "users"
-  add_foreign_key "project_admins", "projects"
-  add_foreign_key "project_admins", "users"
-  add_foreign_key "project_members", "projects"
-  add_foreign_key "project_members", "users"
-  add_foreign_key "rooms", "projects"
+  add_foreign_key "dots", "plans"
+  add_foreign_key "floors", "projects"
+  add_foreign_key "plans", "floors"
+  add_foreign_key "tasks", "dots"
+  add_foreign_key "user_tasks", "tasks"
+  add_foreign_key "user_tasks", "users"
 end
