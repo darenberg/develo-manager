@@ -12,7 +12,6 @@
                 <div class="text-center">
               <h2>Sign up</h2>
                 </div>
-                <form class="user">
                   <div class="class=mb-3">
                     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
                       <%= f.error_notification %>
@@ -35,7 +34,6 @@
                         <%= f.button :submit, "Sign up" %>
                       </div>
                     <% end %>
-                </form>
               </div>
             </div>
           </div>

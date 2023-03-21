@@ -5,13 +5,20 @@
     </div>
   <% end %>
   <div class="menu">
-    <%= link_to new_user_session_path, class: "link" do %>
+    <% if current_user %>
+          <%= link_to projects_path, class: "link" do %>
+        <div class="title">Projects</div>
+        <div class="bar"></div>
+      <% end %>
+      <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "link" do %>
+          <div class="title">Log out</div>
+          <div class="bar"></div>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class: "link" do %>
         <div class="title">Log in</div>
         <div class="bar"></div>
-    <% end %>
-    <%= link_to projects_path, class: "link" do %>
-      <div class="title">Projects</div>
-      <div class="bar"></div>
+      <% end %>
     <% end %>
   </div>
 </div>
