@@ -32,9 +32,13 @@ header.masthead {
 }
 
 ::selection {
-  color: #fff;
+  color: #ffffff;
   background: #212529;
   text-shadow: none;
+}
+
+.my-auto p {
+  font-size: 32px;
 }
 
 *, *::before, *::after {
@@ -42,5 +46,26 @@ header.masthead {
 }
 
 .my-auto {
-  background-color: rgba(255, 148, 54, 0.6);
+  background-color: rgba(255, 162, 0, 0.85);
+
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+.transparent-white-btn {
+  transition: all .5s ease;
+  color: #fff;
+  border: 3px solid white;
+  font-family:'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  font-size: 17px;
+  background-color : transparent;
+  padding: 10px;
+  outline: none;
+  border-radius: 4px;
+}
+.transparent-white-btn:hover {
+  color: #001F3F;
+  background-color: #fff;
 }
