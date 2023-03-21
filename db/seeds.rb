@@ -1,48 +1,51 @@
 require 'faker'
 
-user1 = User.create!(email: "pana@gmail.com", password: "123456")
+project = Project.create(title: Faker::Book.title)
+User.create(email: "pana_admin@gmail.com", password: "123456", admin: true, project: project)
+User.create!(email: "olivia@gmail.com", password: "123456", project: project)
+User.create!(email: "soyiben@gmail.com", password: "123456", project: project)
+User.create!(email: "betech35@gmail.com", password: "123456", project: project)
 
-puts 'Creating 100 fake everything...'
-
-10.times do
-  Project.create(
-    title: Faker::Book.title
-  )
-end
-10.times do
+min_floor = (-3..0).to_a.sample
+max_floor = (1..3).to_a.sample
+floor_numbers = (min_floor..max_floor).to_a
+floor_numbers.each do |number|
   Floor.create(
-    floor_number: (-3..3).rand
-  )
-end
-10.times do
-  Plan.create(
-    floor_id: Floor.all.sample
-  )
-end
-10.times do
-  Dot.create(
-    plan_id: Plan.all.sample
-  )
-end
-10.times do
-  Task.create(
-    title: Faker::ChuckNorris.fact,
-    content: Faker::Fantasy::Tolkien.poem,
-    category: Faker::Book.genre,
-    tag:  Faker::Hobby.activity,
-    user_id: user1
+    number: number,
+    project: project
   )
 end
 
-
-user1 = User.create!(email: "pana@gmail.com", password: "123456", admin: true, proyect_id: project.all.sample )
-user2 = User.create!(email: "soyiben@gmail.com", password:"123456", admin: true, proyect_id: project.all.sample)
-user3 = User.create!(email: "betech35@gmail.com", password:"123456", admin: true, proyect_id: project.all.sample)
-
-10.times do
-  User_task.create(
-    user_id: User.all.sample,
-    task_id: Task.all.sample
-  )
+Floor.all.each do |floor|
+  Plan::STAGES.each do |stage|
+    Plan.create(
+      stage: stage,
+      floor: floor
+    )
+  end
 end
+
+Plan.all.each do |plan|
+  rand(1..8).times do
+    dot = Dot.create(plan: plan)
+    rand(1..5).times do
+      Task.create(dot: dot,
+        title: Faker::ChuckNorris.fact,
+        content: Faker::Fantasy::Tolkien.poem,
+        # category: Faker::Book.genre,
+        tags: Faker::Hobby.activity,)
+    end
+  end
+end
+
+Task.all.each do |task|
+  number_of_users = rand(1..4)
+  User.all.sample(number_of_users).each do |user|
+    UserTask.create(
+      task: task,
+      user: user
+    )
+  end
+end
+
 puts 'Finished!'
