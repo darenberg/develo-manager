@@ -1,19 +1,17 @@
 <div class="header">
-  <div class="logo">
-    DEVELOMANAGER
-  </div>
+  <%= link_to root_path do %>
+    <div class="logo">
+      DEVELOMANAGER
+    </div>
+  <% end %>
   <div class="menu">
-    <a href="#" class="link">
-      <div class="title">Sign up</div>
-      <div class="bar"></div>
-    </a>
-    <a href="#" class="link">
-      <div class="title">Log in</div>
-      <div class="bar"></div>
-    </a>
-    <a href="#" class="link">
+    <%= link_to new_user_session_path, class: "link" do %>
+        <div class="title">Log in</div>
+        <div class="bar"></div>
+    <% end %>
+    <%= link_to projects_path, class: "link" do %>
       <div class="title">Projects</div>
       <div class="bar"></div>
-    </a>
+    <% end %>
   </div>
 </div>
