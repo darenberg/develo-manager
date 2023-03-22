@@ -6,18 +6,15 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @new_task = Task.new
-    @new_dot = Dot.new
-    @new_floor = Floor.new
-    @new_plan = Plan.new
+    show_components
   end
 
   def new
-    @project = project.new
+    @project = Project.new
   end
 
   def create
-    @project = project.new(project_params)
+    @project = Project.new(project_params)
     if @project.save!
       redirect_to @project
     else
@@ -41,11 +38,17 @@ class ProjectsController < ApplicationController
 
   private
 
+  def show_components
+    @tasks = @project.tasks
+    @plans = @project.plans
+    @floors = @project.floors
+  end
+
   def project_params
     params.require(:project).permit(:title)
   end
 
   def set_project
-    @project = project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 end
