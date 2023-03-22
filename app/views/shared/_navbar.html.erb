@@ -6,10 +6,17 @@
   <% end %>
   <div class="menu">
     <% if current_user %>
-          <%= link_to projects_path, class: "link" do %>
-        <div class="title">Projects</div>
+      <div class="dropdown">
+        <button class="title" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          My Projects
+        </button>
         <div class="bar"></div>
-      <% end %>
+        <ul class="dropdown-menu">
+          <% current_user.projects.each do |project| %>
+            <li><a class="dropdown-item" href="#"><% project.name %></a></li>
+          <% end %>
+        </ul>
+      </div>
       <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "link" do %>
           <div class="title">Log out</div>
           <div class="bar"></div>
