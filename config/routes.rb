@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :floors, only: [:destroy] do
     resources :plans, only: [:create, :update]
   end
+
   resources :plans, only: [:destroy] do
     resources :dots, only: [:create, :update]
   end
