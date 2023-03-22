@@ -1,5 +1,27 @@
-element.style {
-  background-image: url('header.jpg');
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid black;
+  text-align: right;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+
+  .logo {
+    color: #0f0f0f;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 32px;
+    font-weight: 100;
+    padding: 26px;
+    border-right: 1px solid black;
+  }
+  .logo a {
+    text-decoration: none;
+    color: #0f0f0f;
+    font-weight: 200;
+  }
 }
 
 @media (min-width: 992px) {

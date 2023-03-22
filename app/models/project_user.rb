@@ -1,4 +1,4 @@
 class ProjectUser < ApplicationRecord
-  belongs_to :users
-  belongs_to :projects
+  belongs_to :project
+  belongs_to :user
 end
