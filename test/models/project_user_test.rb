@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DotControllerTest < ActionDispatch::IntegrationTest
+class ProjectUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
