@@ -13,9 +13,17 @@ class PlansController < ApplicationController
   def update
     @plan.update(plan_params)
   end
+
+  def destroy
+    @plan = Plan.find(params[:id])
+    @plan.destroy
+    redirect_to project_path, notice: 'plan was successfully destroyed.'
+  end
+
   private
 
   def plan_params
     params.require(:plan).permit(:stage)
   end
+
 end

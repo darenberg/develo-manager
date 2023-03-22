@@ -11,6 +11,12 @@ class FloorsController < ApplicationController
     end
   end
 
+  def destroy
+    @floor = Floor.find(params[:id])
+    @floor.destroy
+    redirect_to project_path, notice: 'floor was successfully destroyed.'
+  end
+
   def update
     @floor.update(floor_params)
   end
