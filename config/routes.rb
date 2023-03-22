@@ -3,20 +3,26 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :projects do
-    resources :rooms, only: [:create, :update]
-    resources :project_members, only: [:create, :update]
+    resources :floors, only: [:create, :update]
   end
-
-  resources :rooms, only: [:destroy] do
+  resources :floors, only: [:destroy] do
+    resources :plans, only: [:create, :update]
+  end
+  resources :plans, only: [:destroy] do
     resources :dots, only: [:create, :update]
   end
 
   resources :dots, only: :destroy do
-    resources :notes, only: [:create, :update]
+    resources :tasks, only: [:create, :update]
   end
 
-  resources :project_admins, only: [:create, :update, :destroy]
-  resources :project_members, only: :destroy
+  resources :tasks, only: :destroy do
+    resources :user_tasks, only: [:create, :update]
+  end
+
   resources :dots, only: :destroy
-  resources :notes, only: :destroy
+  resources :tasks, only: :destroy
+  resources :user_tasks, only: :destroy
+  resources :floors, only: :destroy
+  resources :plans, only: :destroy
 end

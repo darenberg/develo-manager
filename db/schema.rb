@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_21_213906) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_172006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,10 +38,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_213906) do
     t.index ["floor_id"], name: "index_plans_on_floor_id"
   end
 
+  create_table "project_users", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_projects_on_owner_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -72,15 +83,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_213906) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false
-    t.bigint "project_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["project_id"], name: "index_users_on_project_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "dots", "plans"
   add_foreign_key "floors", "projects"
   add_foreign_key "plans", "floors"
+  add_foreign_key "project_users", "projects"
+  add_foreign_key "project_users", "users"
+  add_foreign_key "projects", "users", column: "owner_id"
   add_foreign_key "tasks", "dots"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"
