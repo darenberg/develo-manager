@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = project.new(project_params)
+    @project = Project.new(project_params)
     if @project.save!
       redirect_to @project
     else
@@ -49,6 +49,6 @@ class ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 end
