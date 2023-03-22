@@ -3,4 +3,5 @@ class Plan < ApplicationRecord
 
   belongs_to :floor
   has_many :dots
+  has_one_attached :photo
 end

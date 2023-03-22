@@ -10,11 +10,16 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = project.new
+    @project = Project.new
   end
 
   def create
-    @project = project.new(project_params)
+    @project = Project.new(project_params)
+    unless params[:project_users].empty?
+      params[:project_users].each do |user_id|
+        ProjectUser.new(user_id: user_id, project: @project)
+      end
+    end
     if @project.save!
       redirect_to @project
     else
@@ -23,11 +28,16 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
+
     @project.update(project_params)
+    unless params[:project_users].empty?
+      params[:project_users].each do |user_id|
+        ProjectUser.new(user_id: user_id, project: @project)
+      end
+    end
     redirect_to project_path(@project), notice: 'project was successfully updated.'
   end
 
@@ -49,6 +59,6 @@ class ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 end
