@@ -6,7 +6,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-
+    @new_task = Task.new
+    @new_dot = Dot.new
+    @new_floor = Floor.new
+    @new_plan = Plan.new
   end
 
   def new

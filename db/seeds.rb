@@ -1,10 +1,15 @@
 require 'faker'
 
-project = Project.create(title: Faker::Book.title)
-User.create(email: "pana_admin@gmail.com", password: "123456", admin: true, project: project)
-User.create!(email: "olivia@gmail.com", password: "123456", project: project)
-User.create!(email: "soyiben@gmail.com", password: "123456", project: project)
-User.create!(email: "betech35@gmail.com", password: "123456", project: project)
+user = User.create(email: "pana_admin@gmail.com", password: "123456", admin: true)
+User.create!(email: "olivia@gmail.com", password: "123456")
+User.create!(email: "soyiben@gmail.com", password: "123456")
+User.create!(email: "betech35@gmail.com", password: "123456")
+
+project = Project.create(title: Faker::Book.title, owner: user)
+
+User.all.each do |user|
+  ProjectUser.create(project_id: project.id, user_id: user.id)
+end
 
 min_floor = (-3..0).to_a.sample
 max_floor = (1..3).to_a.sample
