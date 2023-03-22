@@ -1,10 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-5">
-      <%= render "projects/show_components/tasks_component" %> # David's component
+      <%= render "projects/show_components/task_component" %> # David's component
     </div>
-    <div class="col-sm-7">
-      <%= render "projects/show_components/floors_component" %> # A, Oli, Shamsul 🌞
-    </div>
+      <div class="col-sm-7">
+        <%@project.floors.first.plans.each do |plan| %>
+          <%= render "projects/show_components/floor_components/map", plan: plan %>
+        <% end %>
+      </div>
+
   </div>
 </div>
