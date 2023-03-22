@@ -1,2 +1,3 @@
 class DotsController < ApplicationController
+
 end
