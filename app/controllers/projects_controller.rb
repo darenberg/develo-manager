@@ -15,11 +15,13 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+
     unless params[:project_users].empty?
       params[:project_users].each do |user_id|
         ProjectUser.new(user_id: user_id, project: @project)
       end
     end
+
     if @project.save!
       redirect_to @project
     else

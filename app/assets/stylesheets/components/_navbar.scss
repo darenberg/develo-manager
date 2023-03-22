@@ -18,6 +18,24 @@ html, body {
   background-color: rgba(255, 162, 0, 0.85);
 }
 
+.dropdown-item {
+  text-decoration: none;
+  color: #0f0f0f;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: rgba(255, 162, 0, 0.85);
+}
+.dropdown-item p {
+  text-decoration: none;
+  color: #0f0f0f;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: rgba(255, 162, 0, 0.85);
+}
+
+.dropdown-item p :hover {
+  background-color: rgba(255, 206, 121, 0.85);
+}
 .dropdown-menu :hover {
   background-color: rgba(255, 206, 121, 0.85);
 }
