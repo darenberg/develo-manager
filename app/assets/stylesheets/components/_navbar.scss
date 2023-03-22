@@ -5,23 +5,23 @@ html, body {
   font-weight: 300;
 }
 
-.header {
-  width: 100%;
-  border-bottom: 1px solid black;
-  text-align: right;
-  position: relative;
-
-  .logo {
-    color: #0f0f0f;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 32px;
-    font-weight: 100;
-    padding: 26px;
-    border-right: 1px solid black;
-  }
+.menu {
+  display: flex;
 }
+
+.dropdown-menu {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #0f0f0f;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: rgba(255, 162, 0, 0.85);
+}
+
+.dropdown-menu :hover {
+  background-color: rgba(255, 206, 121, 0.85);
+}
+
 
 .link {
   display: inline-block;
@@ -33,6 +33,7 @@ html, body {
   color: #0f0f0f;
   font-weight: 800;
   font-size: 24px;
+  border: none;
 
   .bar {
     width: 100%;

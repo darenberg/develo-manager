@@ -8,7 +8,7 @@ User.create!(email: "betech35@gmail.com", password: "123456")
 project = Project.create(title: Faker::Book.title, owner: user)
 
 User.all.each do |user|
-  ProjectUser.create(project_id: project.id, user_id: user.id)
+  ProjectUser.create(project: project, user: user)
 end
 
 min_floor = (-3..0).to_a.sample
