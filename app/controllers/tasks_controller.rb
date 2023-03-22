@@ -14,6 +14,7 @@ class TasksController < ApplicationController
   def update
     @task.update(task_params)
   end
+
   private
 
   def task_params
