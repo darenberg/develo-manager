@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = project.new
+    @project = Project.new
   end
 
   def create
