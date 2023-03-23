@@ -1,1 +1,6 @@
-# Shamsul 👀
+
+<% @project.floors.each do |floor| %>
+    <button type="button"> <%=floor.number%> </button>
+<% end %>
+
+<%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: 1 } } %>
