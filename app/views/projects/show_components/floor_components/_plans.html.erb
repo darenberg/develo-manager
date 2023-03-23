@@ -1,1 +1,4 @@
-# Olivia 🦀
+
+<%@project.floors.first.plans.each do |plan| %>
+  <button type="button"> <%= plan.stage.capitalize %> </button>
+<% end %>
