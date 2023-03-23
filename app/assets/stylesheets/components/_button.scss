@@ -46,3 +46,26 @@
   background: #d96d00;
   text-decoration: none;
 }
+
+.floor-btn:hover {
+  background: #d96d00;
+  text-decoration: none;
+}
+
+.floor-btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #d98600;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  border: none;
+  margin: 15px;
+}
+
+.floor-btns {
+  margin-top: 10%
+}
