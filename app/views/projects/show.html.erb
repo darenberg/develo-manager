@@ -3,17 +3,15 @@
     <div class="col-sm-5">
       <%= render "projects/show_components/task_component" %> # David's component
     </div>
-      <div class="col-sm-7 d-flex">
-        <div class="d-flex flex-column">
+      <div class="col-sm-7 d-flex" data-controller="maps">
+        <div class="d-flex flex-column col-sm-2">
           <%= render "projects/show_components/floor_components/floor_buttons" %>
         </div>
         <div>
           <div>
             <%= render "projects/show_components/floor_components/plans" %>
           </div>
-          <%@project.floors.first.plans.each do |plan| %>
-            <%= render "projects/show_components/floor_components/map", plan: plan %>
-          <% end %>
+          <%= render "projects/show_components/floor_components/map" %>
         </div>
       </div>
   </div>
