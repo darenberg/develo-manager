@@ -3,3 +3,9 @@
   <div class="d-flex col">
   </div>
 </div>
+
+
+
+<%@project.floors.first.plans.each do |plan| %>
+  <button type="button"> <%= plan.stage.capitalize %> </button>
+<% end %>
