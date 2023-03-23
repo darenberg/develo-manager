@@ -1,1 +1,15 @@
 # David 🦆
+<div>
+  <% @project.tasks.each do |task| %>
+    <div class="tasks_cards row">
+      <div class="col-8 h-100">
+        <h3> title: <%= task.title.capitalize %></h3>
+
+      </div>
+      <div class="col-4 h-100">
+        <p id="tags"> tags: <%=task.tags%></p>
+        <p>content:  <%=task.content%> </p>
+      </div>
+    </div>
+  <% end %>
+</div>
