@@ -1,11 +1,10 @@
-# Olivia 🦀
 <div class="d-flex row">
+  <div class="d-flex col m-t-15px">
+  <h4>Floor Plans</h4>
+  </div>
   <div class="d-flex col">
+    <%@project.floors.first.plans.each do |plan| %>
+      <button type="button" class="plan-btn"> <%= plan.stage.capitalize %> </button>
+    <% end %>
   </div>
 </div>
-
-
-
-<%@project.floors.first.plans.each do |plan| %>
-  <button type="button"> <%= plan.stage.capitalize %> </button>
-<% end %>
