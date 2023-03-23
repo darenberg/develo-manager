@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:content, :tags, :title)
+    params.require(:task).permit(:content, :tags, :title, :photo)
   end
 
   def set_project
