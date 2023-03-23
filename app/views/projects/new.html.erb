@@ -1,7 +1,36 @@
- <h2 class="text-center mb-5">create a new project </h2>
-      <div class="p-3 m-3 shadow p-3 mb-5 bg-white rounded" >
-        <%= simple_form_for(@project) do |f| %>
-          <%= f.input :title %>
-            <%= f.submit  %>
-        <% end %>
+
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 col-lg-12 col-xl-10">
+        <div class="card o-hidden border-0 my-5 orange-shadow">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-flex">
+                <div class="flex-grow-1 bg-login-image" style="background-image:url("dogs/image3.jpeg");"></div>
+              </div>
+              <div class="p-5">
+                <div class="text-center">
+                  <h2>Create a new project </h2>
+                </div>
+                <div class="class=mb-3" >
+                  <%= simple_form_for(@project) do |f| %>
+                    <div class="form-inputs form-control-user">
+                    <%= f.input :title %>
+                    <%= simple_fields_for :project_users do |p| %>
+                    <%= select_tag 'pproject_users',
+                    options_from_collection_for_select(User.all, :id, :email),
+                    multiple: true, class: 'multiselectuser' %>
+                  <% end %>
+                    </div>
+                      <%= f.submit  %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</body>
