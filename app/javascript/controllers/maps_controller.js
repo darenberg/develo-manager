@@ -22,6 +22,7 @@ export default class extends Controller {
 
 
   changeFloor(event) {
+    console.log(event.target.id);
     const floor = this.mapFloorsTargets.find((target) => target.id === `map-${event.target.id}`);
     const planExisting = floor.querySelector(`#map-${sessionStorage.getItem("mapPlan")}`);
     this.hideAllPlans();
