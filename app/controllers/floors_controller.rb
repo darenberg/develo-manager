@@ -3,10 +3,8 @@ class FloorsController < ApplicationController
     @floor = Floor.new(floor_params)
     @project = Project.find(params[:project_id])
     @floor.project = @project
-
-
     if @floor.save!
-      create_floor_plans
+      # create_floor_plans
       redirect_to @project
     else
       render :new, status: :unprocessable_entity
@@ -22,6 +20,7 @@ class FloorsController < ApplicationController
   def update
     @floor.update(floor_params)
   end
+
   private
 
   def create_floor_plans
