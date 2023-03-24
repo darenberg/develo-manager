@@ -11,7 +11,13 @@ class PlansController < ApplicationController
   end
 
   def update
-    @plan.update(plan_params)
+    @plan = Plan.find(params[:id])
+    if @plan.update(plan_params)
+      redirect_to @plan.floor.project
+    else
+      # handle errors
+      puts @plan.errors.full_messages
+    end
   end
 
   def destroy
@@ -23,7 +29,7 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:stage)
+    params.require(:plan).permit(:stage, :photo)
   end
 
 end
