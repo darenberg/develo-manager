@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     show_components
+    render_index
   end
 
   def new
@@ -51,7 +52,18 @@ class ProjectsController < ApplicationController
 
   private
 
+  def render_index
+    if params[:edit].present? && params[:task_id].present?
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_edit_component", locals: { task: Task.find(params[:task_id])})
+    elsif params[:task_id].present?
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_show_component", locals: { task: Task.find(params[:task_id])})
+    else
+      render :show, status: :ok, location: @project
+    end
+  end
+
   def show_components
+    @dots = @project.dots
     @tasks = @project.tasks
     @plans = @project.plans
     @floors = @project.floors
