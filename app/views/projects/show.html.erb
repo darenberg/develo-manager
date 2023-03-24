@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-5">
-      <%= render "projects/show_components/task_component" %> # David's component
-    </div>
+    <%= turbo_frame_tag "tasks_show", class: "col-sm-5" do %>
+        <%= render "projects/show_components/task_component" %> # David's component
+    <% end %>
 
     <div class="col-sm-7 d-flex flex-column" data-controller="maps">
       <div>

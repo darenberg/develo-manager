@@ -1,0 +1,8 @@
+<div>
+  <%= simple_form_for(task, url: dot_task_path(task.dot, task), method: :patch) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :tags %>
+    <%= f.input :content %>
+    <%= f.submit  %>
+  <% end %>
+</div>
