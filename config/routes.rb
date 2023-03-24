@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :dots, only: :destroy do
-    resources :tasks, only: [:create, :update]
+    resources :tasks, only: [:create, :update, :edit]
   end
 
   resources :tasks, only: :destroy do
