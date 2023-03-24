@@ -7,6 +7,7 @@ export default class extends Controller {
   connect() {
     const floor0 = this.mapFloorsTargets.find((target) => target.id === "map-floor0");
     const planExisting = floor0.querySelector("#map-plan-Existing");
+    sessionStorage.setItem("mapPlan", "plan-Existing");
     planExisting.classList.remove("d-none");
   }
 
@@ -18,18 +19,21 @@ export default class extends Controller {
     });
   }
 
+
   changeFloor(event) {
     const floor = this.mapFloorsTargets.find((target) => target.id === `map-${event.target.id}`);
-    const planExisting = floor.querySelector("#map-plan-Existing");
+    const planExisting = floor.querySelector(`#map-${sessionStorage.getItem("mapPlan")}`);
     this.hideAllPlans();
     planExisting.classList.remove("d-none");
     sessionStorage.setItem("mapFloor", event.target.id);
   }
+
 
   changePlan(event) {
     const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
     const plan = currentFloor.querySelector(`#map-${event.target.id}`);
     this.hideAllPlans();
     plan.classList.remove("d-none");
+    sessionStorage.setItem("mapPlan", event.target.id);
   }
 }
