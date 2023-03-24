@@ -14,7 +14,7 @@ class FloorsController < ApplicationController
   def destroy
     @floor = Floor.find(params[:id])
     @floor.destroy
-    redirect_to project_path, notice: 'floor was successfully destroyed.'
+    redirect_to project_path, notice: 'floor was successfully destroyed.', status: :see_other
   end
 
   def delete_floor
