@@ -35,10 +35,10 @@ Plan.all.each do |plan|
     dot = Dot.create(plan: plan)
     rand(1..5).times do
       Task.create(dot: dot,
-        title: Faker::ChuckNorris.fact,
-        content: Faker::Fantasy::Tolkien.poem,
-        # category: Faker::Book.genre,
-        tags: Faker::Hobby.activity,)
+        title: Faker::Book.title,
+  content: Faker::Fantasy::Tolkien.poem,
+  # category: Faker::Book.genre,
+  tags: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),)
     end
   end
 end

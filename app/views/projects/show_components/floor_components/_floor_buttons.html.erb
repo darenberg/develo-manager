@@ -1,9 +1,9 @@
-
+<%# <div class="d-flex col"> %>
 <% @project.floors.each do |floor| %>
-    <button class="col-sm-5 m-2" type="button" data-action="click->maps#changeFloor" id="floor<%= floor.number %>"> <%=floor.number%> </button>
+    <button type="button" class="floor-btn"> <%=floor.number%> </button>
 <% end %>
 
-<%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: 1 } } %>
+<%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: 1 } }, class:"floor-btn" %>
+<%= button_to "-", project_floors_path(@project), method: :destroy, params: { floor: { number: 1 } }, class:"floor-btn-minus" %>
+<%# </div> %>
 
-<%# add delete %>
-<%# add negative and 0 %>
