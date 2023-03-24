@@ -1,7 +1,11 @@
-<div>
-  <h1><%= task.title %></h1>
-  <h2><%= task.tags %></h2>
-  <h2><%= task.content %></h2>
-  <%= link_to "back", project_path(@project, back: true), method: :get, remote: true %>
-  <%= link_to "edit", project_path(@project, edit: true, task_id: task.id), method: :get, remote: true %>
+<div class="task">
+  <h3><%= task.title %></h3>
+  <div class="tasks">
+    <h4><%= task.tags %></h4>
+  </div>
+  <div class="overflow-scroll">
+    <h5><%= task.content %></h5>
+  </div class="justify-content-between">
+    <%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %>
+    <%= link_to  '<i class="fa-solid fa-pencil fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, edit: true, task_id: task.id) %>
 </div>
