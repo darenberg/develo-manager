@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:content, :tags, :title, :photo, :dot)
+    params.require(:task).permit(:content, :tags, :title, :photo, :dot, :done)
   end
 
   def set_project
