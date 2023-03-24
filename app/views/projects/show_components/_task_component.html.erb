@@ -1,4 +1,6 @@
+
 <div id="scroll">
+
   <% @project.tasks.each do |task| %>
     <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true do %>
       <div class="tasks_cards row">

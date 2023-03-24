@@ -11,8 +11,8 @@ User.all.each do |user|
   ProjectUser.create(project: project, user: user)
 end
 
-min_floor = (-3..0).to_a.sample
-max_floor = (1..3).to_a.sample
+min_floor = (-2..0).to_a.sample
+max_floor = (1..2).to_a.sample
 floor_numbers = (min_floor..max_floor).to_a
 floor_numbers.each do |number|
   Floor.create(
@@ -35,10 +35,10 @@ Plan.all.each do |plan|
     dot = Dot.create(plan: plan)
     rand(1..5).times do
       Task.create(dot: dot,
-        title: Faker::ChuckNorris.fact,
-        content: Faker::Fantasy::Tolkien.poem,
-        # category: Faker::Book.genre,
-        tags: Faker::Hobby.activity,)
+        title: Faker::Book.title,
+  content: Faker::Fantasy::Tolkien.poem,
+  # category: Faker::Book.genre,
+  tags: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),)
     end
   end
 end
