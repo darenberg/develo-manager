@@ -1,11 +1,10 @@
 
 <div id="scroll">
-
   <% @project.tasks.each do |task| %>
     <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true do %>
       <div class="tasks_cards row">
         <div class="col-8 h-100">
-          <h3> title: <%= task.title.capitalize %></h3>
+          <h3><%= task.title.capitalize %></h3>
         </div>
         <div class="col-4 h-100">
           <p id="tags"> tags: <%=task.tags%></p>

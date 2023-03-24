@@ -8,6 +8,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   justify-content: space-between;
+  border-radius: 10px;
 
 }
 
@@ -34,6 +35,7 @@ margin-right: 30px;
 #scroll{
   overflow: scroll;
   height: 80vh;
+  padding: 50px;
 }
 
 #scroll::-webkit-scrollbar{
