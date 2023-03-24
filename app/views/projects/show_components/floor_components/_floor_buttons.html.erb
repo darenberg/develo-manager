@@ -1,7 +1,7 @@
-<%# <div class="d-flex col"> %>
+<h4><strong>Floor</strong></h4>
+<%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: 1 } }, class:"floor-btn" %>
+
 <% @project.floors.each do |floor| %>
     <button type="button" class="floor-btn"> <%=floor.number%> </button>
 <% end %>
-
-<%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: 1 } }, class:"floor-btn" %>
 <%# </div> %>

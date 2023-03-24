@@ -32,7 +32,10 @@ margin-right: 30px;
 }
 
 #scroll{
-
   overflow: scroll;
   height: 80vh;
+}
+
+#scroll::-webkit-scrollbar{
+  display: none;
 }
