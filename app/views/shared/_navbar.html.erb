@@ -11,9 +11,16 @@
           <div class="bar"></div>
         </button>
         <ul class="dropdown-menu">
+        <div class="d-flex col">
           <% current_user.project_users.each do |project_user| %>
-            <li><a class="dropdown-item" href="#"><%= project_user.project.title %></a></li>
+            <div>
+              <li class="d-flex align-items-center">
+                <%= link_to project_user.project.title, project_user.project, class: "dropdown-item" %>
+                <%= link_to  '<i class="fa-solid fa-pencil text-black"></i>'.html_safe, edit_project_path(project_user.project), class: "dropdown-item" %>
+              </li>
+            </div>
           <% end %>
+        </div>
           <li>
             <%= link_to "Create new project", new_project_path, class: "dropdown-item" %>
           </li>

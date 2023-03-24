@@ -1,23 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-5">
-      <%= render "projects/show_components/task_component" %> # David's component
-    </div>
+    <%= turbo_frame_tag "tasks_show", class: "col-sm-5" do %>
+      <%= render "projects/show_components/task_component" %>
+    <% end %>
 
-    <div class="col-sm-7 d-flex flex-column">
-      <div>
-        <%= render "projects/show_components/floor_components/plans" %>
-      </div>
-      <div class="d-flex mt-5">
-        <div class="d-flex flex-column me-4">
-          <%= render "projects/show_components/floor_components/floor_buttons" %>
-        </div>
-        <div>
-          <%@project.floors.first.plans.each do |plan| %>
-            <%= render "projects/show_components/floor_components/map", plan: plan %>
-          <% end %>
-        </div>
-      </div>
+    <div class="col-sm-7 d-flex flex-column" data-controller="maps">
+      <%= render "projects/show_components/floors_component" %>
     </div>
   </div>
 </div>

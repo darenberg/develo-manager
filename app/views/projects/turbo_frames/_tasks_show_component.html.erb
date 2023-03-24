@@ -1,0 +1,7 @@
+<div>
+  <h1><%= task.title %></h1>
+  <h2><%= task.tags %></h2>
+  <h2><%= task.content %></h2>
+  <%= link_to "back", project_path(@project, back: true), method: :get, remote: true %>
+  <%= link_to "edit", project_path(@project, edit: true, task_id: task.id), method: :get, remote: true %>
+</div>

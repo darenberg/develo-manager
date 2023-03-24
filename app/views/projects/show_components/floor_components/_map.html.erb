@@ -5,8 +5,8 @@
         <div class="d-none" id="map-plan-<%= plan.stage %>">
           <p><%= plan.floor.number %></p>
           <p><%= plan.stage %></p>
+            <% plan.photo %>
           <% if plan.photo.attached? %>
-            <%# PLAN PHOTO %>
             <%= cl_image_tag plan.photo.key, height: 300, width: 400, crop: :fill %>
           <% else %>
             <%= simple_form_for plan, remote: true, url: floor_plan_path(plan), method: :patch do |f| %>
