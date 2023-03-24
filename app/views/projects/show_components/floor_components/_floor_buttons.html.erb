@@ -9,9 +9,9 @@
   </div>
 </div>
 
-<% @project.floors.each do |floor| %>
+<% @project.floor_numbers.each do |floor| %>
   <div class="d-flex">
-    <button type="button" class="floor-btn" data-action="click->maps#changeFloor" id="floor<%= floor.number %>"> <%=floor.number %> </button>
-    <%= link_to "x", floor_path(floor), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this floor?" } %>
+    <button type="button" class="floor-btn" data-action="click->maps#changeFloor" id="floor<%= floor %>"> <%= floor %> </button>
+    <%= link_to "x", floor_path(@project.floors.find_by(number: floor)), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this floor?" } %>
   </div>
 <% end %>
