@@ -1,9 +1,11 @@
-<div class="task_show_card row">
-  <div class="card_edit col-8 h-100">
-    <h1><%= task.title %></h1>
-    <h2><%= task.tags %></h2>
-    <h2><%= task.content %></h2>
-    <%= link_to "back", project_path(@project, back: true), method: :get, remote: true %>
-    <%= link_to "edit", project_path(@project, edit: true, task_id: task.id), method: :get, remote: true %>
+<div class="card task_show_card shadow rounded mt-5">
+  <div class="card-body">
+    <h5 class="card-title"><%= task.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= task.tags %></h6>
+    <p class="card-text"><%= task.content %></p>
+    <div class="btn-group">
+      <%= link_to "back", project_path(@project, back: true), method: :get, remote: true, class: "btn btn-secondary mx-2" %>
+      <%= link_to "edit", project_path(@project, edit: true, task_id: task.id), method: :get, remote: true, class: "btn btn-primary mx-2" %>
+    </div>
   </div>
 </div>
