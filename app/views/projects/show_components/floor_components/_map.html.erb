@@ -2,7 +2,7 @@
   <% @project.floors.each do |floor| %>
     <div id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
       <% floor.plans.each do |plan| %>
-        <div class="d-none" id="map-plan-<%= plan.stage %>">
+        <div id="map-plan-<%= plan.stage %>">
           <p><%= plan.floor.number %></p>
           <p><%= plan.stage %></p>
           <% if plan.photo.attached? %>
