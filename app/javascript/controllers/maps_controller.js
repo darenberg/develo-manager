@@ -38,4 +38,9 @@ export default class extends Controller {
     plan.classList.remove("d-none");
     sessionStorage.setItem("mapPlan", event.target.id);
   }
+
+  deleteFloor(event) {
+    const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
+
+  }
 }
