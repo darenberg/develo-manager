@@ -9,7 +9,7 @@
           <% if plan.photo.attached? %>
             <%= cl_image_tag plan.photo.key, height: 300, width: 400, crop: :fill %>
           <% else %>
-            <%= simple_form_for plan, remote: true, url: floor_plan_path(plan), method: :patch do |f| %>
+            <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
               <%= f.input :photo, as: :file %>
               <%= f.submit %>
             <% end %>
