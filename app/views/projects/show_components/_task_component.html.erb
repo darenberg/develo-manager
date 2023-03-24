@@ -1,4 +1,4 @@
-# David 🦆
+
 <div id="scroll">
 <%= simple_form_for [@project.floors.first.plans.first.dots.first, Task.new] do |f| %>
       <%= f.input :title %>
@@ -7,6 +7,7 @@
         <%= f.input :photo, as: :file %>
       <%= f.submit %>
   <% end %>
+
   <% @project.tasks.each do |task| %>
 
     <div class="tasks_cards row">
