@@ -16,7 +16,7 @@
             <div>
               <li class="d-flex align-items-center">
                 <%= link_to project_user.project.title, project_user.project, class: "dropdown-item" %>
-                <%= link_to  '<i class="fa-solid fa-pencil text-black"></i>'.html_safe, project_user.project, class: "dropdown-item" %>
+                <%= link_to  '<i class="fa-solid fa-pencil text-black"></i>'.html_safe, edit_project_path(project_user.project), class: "dropdown-item" %>
               </li>
             </div>
           <% end %>

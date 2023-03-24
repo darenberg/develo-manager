@@ -1,6 +1,13 @@
-<h4><strong>Floor</strong></h4>
-<%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: @project.floor_numbers.last + 1} }, class:"floor-btn" %>
-<%= button_to "-", project_floors_path(@project), method: :destroy, params: { floor: { number: @project.floor_numbers.first - 1} }, class:"floor-btn-minus" %>
+<div class="d-flex flex-column">
+  <div class="d-flex">
+    <%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: @project.floor_numbers.last + 1} }, class:"floor-btn" %>
+    <%= button_to "-", project_floors_path(@project), method: :destroy, params: { floor: { number: @project.floor_numbers.first - 1} }, class:"floor-btn-minus" %>
+  </div>
+  <div>
+    <h4><strong>Floor</strong></h4>
+  </div>
+</div>
+
 <% @project.floor_numbers.each do |floor| %>
     <button type="button" class="floor-btn" data-action="click->maps#changeFloor" id="floor<%= floor %>"> <%=floor %> </button>
 <% end %>
