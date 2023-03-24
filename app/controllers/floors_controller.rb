@@ -4,7 +4,7 @@ class FloorsController < ApplicationController
     @project = Project.find(params[:project_id])
     @floor.project = @project
     if @floor.save!
-      # create_floor_plans
+      create_floor_plans(@floor)
       redirect_to @project
     else
       render :new, status: :unprocessable_entity
@@ -14,18 +14,27 @@ class FloorsController < ApplicationController
   def destroy
     @floor = Floor.find(params[:id])
     @floor.destroy
-    redirect_to project_path, notice: 'floor was successfully destroyed.'
+    redirect_to project_path, notice: 'floor was successfully destroyed.', status: :see_other
   end
 
-  def update
-    @floor.update(floor_params)
+  def delete_floor
+    floor = params[:floor]
+    active_button_id = session["active_button_#{floor}"]
+
+    if active_button_id.present?
+      session.delete("active_button_#{floor}")
+      Button.find_by(id: active_button_id).destroy
+      flash[:success] = "Floor #{floor} and its associated button have been deleted."
+    else
+      flash[:error] = "No active button found for floor #{floor}."
+    end
   end
 
   private
 
-  def create_floor_plans
-    ["Existing", "Build", "Interior"].each do |stage|
-      Plan.create!(stage: stage, floor: @floor)
+  def create_floor_plans(floor)
+    Plan::STAGES.each do |stage|
+      Plan.create!(stage: stage, floor: floor)
     end
   end
 
