@@ -2,7 +2,7 @@
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   margin-top: 10px;
@@ -19,7 +19,7 @@
   margin-top: 10px;
 }
 .tasks_cards p {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
@@ -27,12 +27,13 @@
 }
 
 #tags {
-font-size: 12px;
+font-size: 14px;
+font-weight: bold;
 margin-right: 30px;
 }
 
 #scroll{
-  overflow: scroll;
+  overflow-y: scroll;
   height: 80vh;
 }
 
