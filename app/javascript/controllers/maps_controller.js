@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["mapFloors"]
 
   connect() {
+    console.log("HELLO THIS IS CONNECTED!!!");
     const floor0 = this.mapFloorsTargets.find((target) => target.id === "map-floor0");
     const planExisting = floor0.querySelector("#map-plan-Existing");
     sessionStorage.setItem("mapPlan", "plan-Existing");
