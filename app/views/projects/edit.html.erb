@@ -1,7 +1,7 @@
 <%= simple_form_for(@project) do |f| %>
   <%= f.input :title %>
   <%= simple_fields_for :project_users do |p| %>
-    <%= select_tag 'pproject_users',
+    <%= select_tag 'project_users',
       options_from_collection_for_select(User.all, :id, :email),
       multiple: true, class: 'multiselectuser' %>
   <% end %>
