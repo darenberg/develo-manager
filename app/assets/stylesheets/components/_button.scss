@@ -152,3 +152,15 @@
   transform: scale(0.9);
   transition: all .3s ease-in-out;
 }
+
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+

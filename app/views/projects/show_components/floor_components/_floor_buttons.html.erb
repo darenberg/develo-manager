@@ -10,6 +10,10 @@
 </div>
 
 <% @project.floor_numbers.each do |floor| %>
-    <button type="button" class="floor-btn" data-action="click->maps#changeFloor" id="floor<%= floor %>"> <%=floor %> </button>
+  <div class="d-flex">
+    <button type="button" class="floor-btn" data-action="click->maps#changeFloor" id="floor<%= floor %>"> <%= floor %> </button>
+    <%= link_to floor_path(@project.floors.find_by(number: floor)), class: "delete-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this floor?" } do %>
+      <i class="fas fa-trash-alt  text-danger"></i>
+    <% end %>
+  </div>
 <% end %>
-
