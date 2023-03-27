@@ -15,5 +15,6 @@
     <%= link_to floor_path(@project.floors.find_by(number: floor)), class: "delete-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this floor?" } do %>
       <i class="fas fa-trash-alt  text-danger"></i>
     <% end %>
+    <%= link_to "x", floor_path(@project.floors.find_by(number: floor)), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this floor?" } %>
   </div>
 <% end %>

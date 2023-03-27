@@ -1,15 +1,17 @@
-<div>
+<div >
   <% @project.floors.each do |floor| %>
     <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
       <% floor.plans.each do |plan| %>
         <div class="d-none" id="map-plan-<%= plan.stage %>">
-          <p><%= plan.floor.number %></p>
-          <p><%= plan.stage %></p>
             <% plan.photo %>
           <% if plan.photo.attached? %>
             <%= cl_image_tag plan.photo.key, height: 300, width: 400, crop: :fill %>
+            <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+              <%= f.input :photo, as: :file %>
+              <%= f.submit %>
+            <% end %>
           <% else %>
-            <%= simple_form_for plan, remote: true, url: floor_plan_path(plan), method: :patch do |f| %>
+            <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
               <%= f.input :photo, as: :file %>
               <%= f.submit %>
             <% end %>

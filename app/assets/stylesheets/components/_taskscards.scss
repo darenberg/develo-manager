@@ -1,0 +1,122 @@
+.tasks_cards {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  border-radius: 10px;
+
+}
+
+.tasks_cards h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin: 0;
+  padding-left: 5px ;
+  margin-top: 10px;
+}
+
+.tasks_cards p {
+  font-size: 14px;
+  color: black;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+
+#tags {
+font-size: 14px;
+font-weight: bold;
+margin-right: 30px;
+}
+
+#scroll{
+  overflow-y: scroll;
+  height: 80vh;
+  padding: 50px;
+}
+
+#scroll::-webkit-scrollbar{
+  display: none;
+}
+
+.task_box {
+  background-color: transparent;
+  height: 400px;
+  margin-top: 15px;
+}
+
+.task_header {
+  margin-top: 15px;
+}
+
+.task_action_btn {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 88%;
+margin-left: 30px;
+font-size: 45px;
+}
+
+.tasks_tags h4{
+font-size: medium;
+color: rgb(61, 61, 61);
+font-weight: bolder;
+}
+
+#scroll_task{
+  overflow-y: scroll;
+  height: 35vh;
+  padding: 25px;
+}
+
+#scroll_task::-webkit-scrollbar{
+  display: none;
+}
+
+.indivudual_task_view {
+  font-size: 14px;
+  color: black;
+  // line-height: 1.4;
+  margin-top: 3px;
+}
+
+.tasks_cards_ind {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  border-radius: 10px;
+
+}
+
+.tasks_cards_ind h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin: 0;
+  padding-left: 5px ;
+  margin-top: 5px;
+}
+
+.tasks_cards_ind p {
+  font-size: 14px;
+  color: black;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
