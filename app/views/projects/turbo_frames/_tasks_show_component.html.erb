@@ -1,12 +1,19 @@
-
-<div class="task">
-  <h3><%= task.title %></h3>
-  <div class="tasks">
-    <h4><%= task.tags %></h4>
+<div class="task_box">
+  <div class="task_header">
+    <div class="task_action_btn">
+      <div class="task_back_btn"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
+      <div class="task_edit_btn"><%= link_to  '<i class="fa-solid fa-pencil fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, edit: true, task_id: task.id) %>
+    </div>
   </div>
-  <div class="overflow-scroll">
-    <h5><%= task.content %></h5>
-  </div class="justify-content-between">
-    <%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %>
-    <%= link_to  '<i class="fa-solid fa-pencil fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, edit: true, task_id: task.id) %>
+  <div class="tasks_cards_ind indivudual_task_view" id="scroll_task">
+    <div class="task">
+      <h3><%= task.title %></h3>
+      <div class="tasks_tags">
+        <h4># <%= task.tags %></h4>
+      </div>
+      <div class="task_content">
+        <h5><%= task.content %> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde tenetur aperiam quam harum magni sit minus impedit similique distinctio aut adipisci fugit, dolor facere soluta corporis praesentium, cum alias. Quisquam.</h5>
+      </div>
+    </div>
+  </div>
 </div>
