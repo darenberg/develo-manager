@@ -80,3 +80,5 @@ group :test do
 end
 
 gem "cloudinary", "~> 1.25"
+gem 'mapbox-gl-rails'
+gem 'mapbox-sdk'

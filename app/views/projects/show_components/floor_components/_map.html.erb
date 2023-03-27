@@ -1,23 +1,55 @@
-<div >
-  <% @project.floors.each do |floor| %>
-    <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
-      <% floor.plans.each do |plan| %>
-        <div class="d-none" id="map-plan-<%= plan.stage %>">
-            <% plan.photo %>
-          <% if plan.photo.attached? %>
-            <%= cl_image_tag plan.photo.key, height: 300, width: 400, crop: :fill %>
-            <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-              <%= f.input :photo, as: :file %>
-              <%= f.submit %>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+
+<body>
+  <div >
+    <% @project.floors.each do |floor| %>
+      <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
+        <% floor.plans.each do |plan| %>
+          <div class="d-none" id="map-plan-<%= plan.stage %>">
+
+            <div>
+              <% plan.dots.each do |dot| %>
+                <%= form_for dot do |f| %>
+                  <div id="draggable" class="ui-widget-content">
+                    <%= f.button :submit %>
+                  </div>
+                  <%= f.hidden_field :x_position, id: "x-position" %>
+                  <%= f.hidden_field :y_position, id: "y-position" %>
+                <% end %>
+              <%end%>
+            </div>
+            <%= floor.number %>
+            <%= plan.stage %>
+            <% if plan.photo.attached? %>
+              <%= cl_image_tag plan.photo.key, height: 500, width: 600, crop: :fill %>
+              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+                <%= f.input :photo, as: :file %>
+                <%= f.submit %>
+              <% end %>
+            <% else %>
+              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+                <%= f.input :photo, as: :file %>
+                <%= f.submit %>
+              <% end %>
             <% end %>
-          <% else %>
-            <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-              <%= f.input :photo, as: :file %>
-              <%= f.submit %>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+
+<script>
+  $( function() {
+    $( "#draggable" ).draggable({
+      stop: function( event, ui ) {
+        $('#x-position').val(ui.position.left);
+        $('#y-position').val(ui.position.top);
+      }
+    });
+  } );
+</script>
+</body>

@@ -11,13 +11,19 @@
 </div>
 
 <script>
+// select all buttons
 const buttons = document.querySelectorAll('button');
+
+// loop through each button
 buttons.forEach(button => {
+  // add a click event listener to each button
   button.addEventListener('click', function() {
+    // remove the 'active' class from all buttons
     buttons.forEach(btn => {
       btn.classList.remove('active');
     });
 
+    // add the 'active' class to the clicked button
     button.classList.add('active');
   });
 });

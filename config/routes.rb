@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     resources :user_tasks, only: [:create, :update]
   end
 
+  post "/update_dot_position" => "dots#update_position"
+
+
   resources :dots, only: :destroy
   resources :tasks, only: :destroy
   resources :user_tasks, only: :destroy

@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
