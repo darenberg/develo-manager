@@ -5,7 +5,7 @@
   <div class="d-flex flex-column me-4">
     <%= render "projects/show_components/floor_components/floor_buttons" %>
   </div>
-  <div>
+  <div class="shadow-sm p-3 mb-5 bg-white rounded col-sm-10">
     <%@project.floors.first.plans.each do |plan| %>
       <%= render "projects/show_components/floor_components/map", plan: plan %>
     <% end %>
