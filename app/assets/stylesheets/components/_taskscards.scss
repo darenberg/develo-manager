@@ -19,22 +19,22 @@
   margin: 0;
   padding-left: 5px ;
   margin-top: 10px;
+  width: 65%;
 }
 
 .tasks_cards p {
   font-size: 14px;
   color: black;
-  line-height: 1.4;
-  opacity: .7;
+  line-height: normal;
   margin-bottom: 0;
   margin-top: 10px;
 }
 
 
-#tags {
+.tags {
 font-size: 14px;
 font-weight: bold;
-margin-right: 30px;
+margin-right: 15px;
 }
 
 #scroll{
@@ -119,4 +119,14 @@ font-weight: bolder;
   opacity: .7;
   margin-bottom: 0;
   margin-top: 5px;
+}
+
+#scroll_task_ind{
+  overflow-y: scroll;
+  height: 15vh;
+  padding: 5px;
+}
+
+#scroll_task_ind::-webkit-scrollbar{
+  display: none;
 }
