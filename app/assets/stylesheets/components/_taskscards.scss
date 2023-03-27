@@ -74,7 +74,7 @@ font-weight: bolder;
 
 #scroll_task{
   overflow-y: scroll;
-  height: 35vh;
+  height: 25vh;
   padding: 25px;
 }
 
@@ -100,11 +100,10 @@ font-weight: bolder;
   margin-bottom: 10px;
   justify-content: space-between;
   border-radius: 10px;
-
 }
 
-.tasks_cards_ind h3 {
-  font-size: 18px;
+.tasks_cards_ind h2 {
+  font-size: 26px;
   font-weight: bold;
   color: black;
   margin: 0;
