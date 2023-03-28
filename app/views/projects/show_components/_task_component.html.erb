@@ -1,5 +1,6 @@
 <div id="scroll">
-  <% @project.tasks.sorted_tasks_by_done.each do |task| %>
+
+  <% @tasks.sorted_tasks_by_done.each do |task| %>
     <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
       <div class="d-flex row">
         <div class="d-flex col-12">
@@ -24,6 +25,7 @@
             <p>Description:  <%= task.content %> Lorem ipsum dolor sit amet consectetur adipisicing elit. In earum dolor rem veniam sint quaerat error dolores hic esse rerum aliquid saepe, quisquam, ipsum officiis labore quidem unde accusamus eaque.</p>
           </div>
            </div>
+
         </div>
       </div>
     <% end %>

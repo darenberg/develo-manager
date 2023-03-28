@@ -6,6 +6,9 @@ class Project < ApplicationRecord
   has_many :dots, through: :plans
   has_many :tasks, through: :dots
 
+  has_many :tags, through: :tasks
+
+
   def floor_numbers
     floors.pluck(:number).sort
   end

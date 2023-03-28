@@ -1,0 +1,9 @@
+<%# This is hardcoded, we are always creating a task for the first dot of the plan %>
+<%= simple_form_for([@project.floors.first.plans.first.dots.first, Task.new], method: :post) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content %>
+  <%= simple_fields_for :tags do |t| %>
+    <%= t.input :tags %>
+  <% end %>
+  <%= f.submit  %>
+<% end %>
