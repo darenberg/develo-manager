@@ -9,7 +9,6 @@
     <% end %>
   </div>
 
-
   <div id="scroll" data-task-filter-target="list">
     <% @tasks.each do |task| %>
       <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>

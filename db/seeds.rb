@@ -38,12 +38,15 @@ Plan.all.each do |plan|
         title: Faker::Book.title,
   content: Faker::Fantasy::Tolkien.poem,
   # category: Faker::Book.genre,
-  tags: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),)
-    end
-  end
+)
+end
+end
 end
 
 Task.all.each do |task|
+  3.times do
+    Tag.create(task: task, tag_name: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),)
+  end
   number_of_users = rand(1..4)
   User.all.sample(number_of_users).each do |user|
     UserTask.create(
@@ -52,5 +55,6 @@ Task.all.each do |task|
     )
   end
 end
+
 
 puts 'Finished!'

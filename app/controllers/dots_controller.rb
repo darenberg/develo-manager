@@ -1,7 +1,7 @@
 class DotsController < ApplicationController
   def create
     @dot = Dot.new
-    @plan = plan.find(params[:plan_id])
+    @plan = Plan.find(params[:plan_id])
     @dot.plan = @plan
 
 
