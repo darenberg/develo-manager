@@ -6,8 +6,6 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  validates :tags, presence: true
-
   scope :sorted_tasks_by_done, -> { order(done: :asc)}
 
 end
