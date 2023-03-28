@@ -1,13 +1,27 @@
+<%= @project.title%>
+  <%= link_to "create new task",  project_path(@project, create: true), method: :get, remote: true, style: "text-decoration: none" %>
+  <div data-controller="task-filter" data-task-filter-project-id-value="<%=@project.id %>" >
+    <%= form_with(url: @project, method: "get", data: { action: "submit->task-filter#searchTags"}) do |tf| %>
+      <%= tf.label :tag_name, "tag" %>
+      <%= tf.text_field :tag_name %>
+      <%= tf.submit "search tag" %>
+    <% end %>
+  </div>
 
 <div id="scroll">
-  <% @project.tasks.each do |task| %>
+
+  <% @tasks.each do |task| %>
     <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
       <div class="tasks_cards row">
         <div class="col-8 h-100">
           <h3><%= task.title.capitalize %></h3>
         </div>
         <div class="col-4 h-100">
-          <p id="tags"> tags: <%=task.tags%></p>
+          <p id="tags">
+            <% task.tags.each do |t| %>
+              <%= t.tag_name %>
+            <% end %>
+          </p>
           <p>content:  <%=task.content%> </p>
           <p> <%= task.done %> </p>
         </div>
