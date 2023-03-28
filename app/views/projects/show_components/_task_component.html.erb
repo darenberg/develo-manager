@@ -1,4 +1,3 @@
-
 <div data-controller="task-filter">
   <%= @project.title%>
   <%= link_to "create new task",  project_path(@project, create: true), method: :get, remote: true, style: "text-decoration: none" %>
@@ -9,7 +8,6 @@
       <%= tf.submit "search tag" %>
     <% end %>
   </div>
-
 
   <div id="scroll" data-task-filter-target="list">
     <% @tasks.each do |task| %>
