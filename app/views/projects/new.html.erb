@@ -6,9 +6,6 @@
         <div class="card o-hidden border-0 my-5 orange-shadow">
           <div class="card-body p-0">
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-flex">
-                <div class="flex-grow-1 bg-login-image" style="background-image:url("dogs/image3.jpeg");"></div>
-              </div>
               <div class="p-5">
                 <div class="text-center">
                   <h2>Create a new project </h2>
@@ -23,7 +20,9 @@
                     multiple: true, class: 'multiselectuser' %>
                   <% end %>
                     </div>
-                      <%= f.submit  %>
+                    <div class="mt-3">
+                      <input type="submit" name="commit" value="Create" data-disable-with="Create" class="form-btn">
+                    </div>
                   <% end %>
                 </div>
               </div>
