@@ -22,8 +22,6 @@
                         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
                       </div>
                       <div>
-                        <%# <%= link_to "Test", root_path, class: "form-btn", type: "submit" %>
-                        <%# <%= f.submit "Log in" %>
                         <input type="submit" name="commit" value="Log in" data-disable-with="Log in" class="form-btn">
                       </div>
                     <% end %>
