@@ -80,3 +80,4 @@ group :test do
 end
 
 gem "cloudinary", "~> 1.25"
+gem 'jquery-rails'
