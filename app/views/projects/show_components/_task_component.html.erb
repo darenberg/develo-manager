@@ -1,29 +1,28 @@
-
 <div id="scroll">
   <% @project.tasks.sorted_tasks_by_done.each do |task| %>
     <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
       <div class="d-flex row">
-        <div class="d-flex col">
+        <div class="d-flex col-12">
           <div class="tasks_cards row" id="scroll_task_ind">
             <% if task.done? %>
               <div class="d-flex align-content-center align-items-center">
                 <h3><%= task.title.capitalize %></h3>
-                <i class="fa-solid fa-check ms-3" style="color: #ffa200;"></i>
+                <i class="fa-solid fa-check ms-2" style="color: #ffa200;"></i>
               </div>
-            <% else %>
-              <h3><%= task.title.capitalize %></h3>
-            <% end %>
-              <div class="col-8 h-100">
-                <p>Description:  <%= task.content %> Lorem ipsum dolor sit amet consectetur adipisicing elit. In earum dolor rem veniam sint quaerat error dolores hic esse rerum aliquid saepe, quisquam, ipsum officiis labore quidem unde accusamus eaque.</p>
-              </div>
-              <div class="d-flex col-4 h-100">
-                <p class="tags">
-                  <%array_of_tags = []%>
-                  <%array_of_tags << task.tags.split(" ")%>
-                  <%array_of_tags.map do |tag| %>
-                  Tags: #<%=tag%></p>
-                <% end %>
-              </div>
+              <% else %>
+                <h3><%= task.title.capitalize %></h3>
+              <% end %>
+            <div class="d-flex row h-100">
+              <p class="tags">
+                <%array_of_tags = []%>
+                <%array_of_tags << task.tags.split(" ")%>
+                <%array_of_tags.map do |tag| %>
+                Tags: #<%=tag%></p>
+              <% end %>
+            </div>
+          <div class="col-8 h-100">
+            <p>Description:  <%= task.content %> Lorem ipsum dolor sit amet consectetur adipisicing elit. In earum dolor rem veniam sint quaerat error dolores hic esse rerum aliquid saepe, quisquam, ipsum officiis labore quidem unde accusamus eaque.</p>
+          </div>
            </div>
         </div>
       </div>
