@@ -37,7 +37,7 @@ Plan.all.each do |plan|
       Task.create(dot: dot,
         title: Faker::Book.title,
   content: Faker::Fantasy::Tolkien.poem,
-  # category: Faker::Book.genre,
+  #category: Faker::Book.genre,
   tags: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),)
     end
   end
