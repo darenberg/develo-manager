@@ -55,41 +55,36 @@ export default class extends Controller {
       });
     });
     }
-  }
 
-  hideAllPlans() {
-    this.mapFloorsTargets.forEach((floor) => {
-      floor.querySelectorAll("[id*='map-plan']").forEach((plan) => {
-        plan.classList.add("d-none");
+    hideAllPlans() {
+      this.mapFloorsTargets.forEach((floor) => {
+        floor.querySelectorAll("[id*='map-plan']").forEach((plan) => {
+          plan.classList.add("d-none");
+        });
       });
-    });
-  }
+    }
 
 
-  changeFloor(event) {
-    console.log(this.mapFloorsTargets);
-    const floor = this.mapFloorsTargets.find((target) => target.id === `map-${event.target.id}`);
-    const planExisting = floor.querySelector(`#map-${sessionStorage.getItem("mapPlan")}`);
-    this.hideAllPlans();
-    planExisting.classList.remove("d-none");
-    sessionStorage.setItem("mapFloor", event.target.id);
-  }
+    changeFloor(event) {
+      console.log(this.mapFloorsTargets);
+      const floor = this.mapFloorsTargets.find((target) => target.id === `map-${event.target.id}`);
+      const planExisting = floor.querySelector(`#map-${sessionStorage.getItem("mapPlan")}`);
+      this.hideAllPlans();
+      planExisting.classList.remove("d-none");
+      sessionStorage.setItem("mapFloor", event.target.id);
+    }
 
 
-  changePlan(event) {
-    const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
-    const plan = currentFloor.querySelector(`#map-${event.target.id}`);
-    this.hideAllPlans();
-    plan.classList.remove("d-none");
-    sessionStorage.setItem("mapPlan", event.target.id);
-  }
+    changePlan(event) {
+      const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
+      const plan = currentFloor.querySelector(`#map-${event.target.id}`);
+      this.hideAllPlans();
+      plan.classList.remove("d-none");
+      sessionStorage.setItem("mapPlan", event.target.id);
+    }
 
-  deleteFloor(event) {
-    const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
-  }
-
-
-
-
+    deleteFloor(event) {
+      const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
+    }
 
 }
