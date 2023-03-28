@@ -1,13 +1,16 @@
 class TasksController < ApplicationController
+
   def create
     @task = Task.new(task_params)
     @dot = Dot.find(params[:dot_id])
     @task.dot = @dot
 
     if @task.save!
-      redirect_to @dot.plan.floor.project
+      create_tags(params[:tags][:tags])
+      @project = @task.dot.plan.floor.project
+      render "projects/show", status: :ok, location: @project
     else
-      render :new, status: :unprocessable_entity
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component", locals: { task: @task})
     end
   end
 
@@ -28,6 +31,13 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def create_tags(tags)
+    split_tags = tags.split(" ")
+    split_tags.each do |tag|
+      Tag.create(tag_name: tag, task: @task)
+    end
+  end
 
   def task_params
     params.require(:task).permit(:content, :tags, :title, :photo, :dot, :done)

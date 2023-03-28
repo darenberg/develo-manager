@@ -1,6 +1,16 @@
+<%= @project.title%>
+  <%= link_to "create new task",  project_path(@project, create: true), method: :get, remote: true, style: "text-decoration: none" %>
+  <div data-controller="task-filter" data-task-filter-project-id-value="<%=@project.id %>" >
+    <%= form_with(url: @project, method: "get", data: { action: "submit->task-filter#searchTags"}) do |tf| %>
+      <%= tf.label :tag_name, "tag" %>
+      <%= tf.text_field :tag_name %>
+      <%= tf.submit "search tag" %>
+    <% end %>
+  </div>
 
 <div id="scroll">
-  <% @project.tasks.sorted_tasks_by_done.each do |task| %>
+
+  <% @tasks.sorted_tasks_by_done.each do |task| %>
     <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
       <div class="d-flex row">
         <div class="d-flex col">
@@ -25,6 +35,7 @@
                 <% end %>
               </div>
            </div>
+
         </div>
       </div>
     <% end %>
