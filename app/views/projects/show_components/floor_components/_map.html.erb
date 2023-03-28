@@ -1,32 +1,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<div >
-  <% @project.floors.each do |floor| %>
-    <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
-      <% floor.plans.each do |plan| %>
-        <div class="d-none" id="map-plan-<%= plan.stage %>">
+<% @project.floors.each do |floor| %>
+  <div id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
+    <% floor.plans.each do |plan| %>
+      <div class="d-none" id="map-plan-<%= plan.stage %>">
+        <div class="d-flex align-items-center justify-content-between">
           <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
-            <% plan.dots.each do |dot|%>
-              <button class="draggable"><%dot.id%></button>
-            <% end %>
-            <%=floor.number%>
-            <%=plan.stage%>
-            <% plan.photo %>
-            <% if plan.photo.attached? %>
-              <%= cl_image_tag plan.photo.key, height: 300, width: 400, crop: :fill %>
-              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-                <%= f.input :photo, as: :file %>
-                <%= f.submit %>
-              <% end %>
-            <% else %>
-              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-                <%= f.input :photo, as: :file %>
-                <%= f.submit %>
-            <% end %>
+          <% plan.dots.each do |dot|%>
+            <button class="draggable"><%dot.id%></button>
+          <% end %>
+          <span>Floor: <%=floor.number%></span>
+          <span>Stage: <%=plan.stage%></span>
+          <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+            <%= f.input :photo, as: :file %>
+            <%= f.submit %>
           <% end %>
         </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+        <div class="card mt-3">
+          <div class="card-body">
+            <% if plan.photo.attached? %>
+              <img src="<%= cl_image_path plan.photo.key, height: 300, width: 400, crop: :fill %>" alt="Plan image" class="card-img">
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
