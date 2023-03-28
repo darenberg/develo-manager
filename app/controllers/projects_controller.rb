@@ -53,6 +53,7 @@ class ProjectsController < ApplicationController
   private
 
   def render_index
+
     if params[:edit].present? && params[:task_id].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_edit_component", locals: { task: Task.find(params[:task_id])})
     elsif params[:task_id].present?
@@ -61,10 +62,13 @@ class ProjectsController < ApplicationController
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component")
     elsif params[:tag_name].present?
       puts "hola #{params[:tag_name]}"
-      @tasks = @project.tasks.joins(:tags).where(tag: { tag_name: params[:tag_name] })
+      #@tasks = @project.tasks.take(2)
+      @tasks = @project.tasks.includes(:tags).where(tags: {tag_name: params[:tag_name]}).uniq
+
       respond_to do |format|
-        format.html
-        format.text { render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/show_components/task_component", locals: {project: @project, dots: @dots, tasks: @tasks, plans: @plans, floors: @floors }) }
+        #format.html
+        puts "fomrat.text"
+        format.text { render partial: "projects/show_components/task_component", locals: {project: @project, dots: @dots, tasks: @tasks, plans: @plans, floors: @floors }, formats: [:html]}
       end
     else
       render :show, status: :ok, location: @project
@@ -76,6 +80,7 @@ class ProjectsController < ApplicationController
     @tasks = @project.tasks
     @plans = @project.plans
     @floors = @project.floors
+
   end
 
   def project_params
