@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_24_221234) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_164640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,9 +83,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_221234) do
     t.index ["owner_id"], name: "index_projects_on_owner_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_tags_on_task_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "content"
-    t.string "tags"
     t.string "title"
     t.bigint "dot_id", null: false
     t.datetime "created_at", null: false
@@ -126,6 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_221234) do
   add_foreign_key "project_users", "projects"
   add_foreign_key "project_users", "users"
   add_foreign_key "projects", "users", column: "owner_id"
+  add_foreign_key "tags", "tasks"
   add_foreign_key "tasks", "dots"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"
