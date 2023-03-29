@@ -4,11 +4,17 @@
 
 import { application } from "./application"
 
+import DotsController from "./dots_controller"
+application.register("dots", DotsController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import MapsController from "./maps_controller"
 application.register("maps", MapsController)
+
+import NewTaskController from "./new_task_controller"
+application.register("new-task", NewTaskController)
 
 import PlansController from "./plans_controller"
 application.register("plans", PlansController)

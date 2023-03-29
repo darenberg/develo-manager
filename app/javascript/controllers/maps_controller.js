@@ -21,7 +21,7 @@ export default class extends Controller {
   displayDotTasks(e) {
     // fetch to the project show to retrieve the tasks of this dot
     e.preventDefault();
-    console.log("hola");
+    console.log("holaaaaaaa");
     const url = `${e.target.action}?dot_id=${e.target.querySelector("input").value}`
     fetch(url, { headers: {"Accept": "text/plain"} })
       .then(response => response.text())

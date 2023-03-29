@@ -4,10 +4,10 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @dot = Dot.find(params[:dot_id])
     @task.dot = @dot
-
     if @task.save!
       create_tags(params[:tags][:tags])
       @project = @task.dot.plan.floor.project
+      @tasks = @dot.tasks
       render "projects/show", status: :ok, location: @project
     else
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component", locals: { task: @task})
@@ -21,6 +21,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       # create_tags(params[:tags][:tags])
       @project = @task.dot.plan.floor.project
+      @tasks = @project.tasks
       render "projects/show", status: :ok, location: @project
     else
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_edit_component", locals: { task: @task})

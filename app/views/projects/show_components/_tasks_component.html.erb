@@ -1,10 +1,25 @@
-<div data-controller="task-filter">
+<div>
+  <% if @dot.present? %>
+    <div data-controller="new-task">
+      <div class="my-3">
+        <button data-action="click->new-task#toggleForm" class="btn btn-primary">Add task for this dot</button>
+      </div>
+      <div data-new-task-target="form" class="d-none">
+        <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
+          <%= f.input :title %>
+          <%= f.input :content %>
+          <%= f.input :photo, as: :file %>
+          <%= simple_fields_for :tags do |t| %>
+            <%= t.input :tags %>
+          <% end %>
+          <%= f.submit  %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <%= @project.title %>
 <div class="my-3">
-  <%= link_to "Create New Task", project_path(@project, create: true), class: "btn btn-primary", method: :get, remote: true %>
-</div>
-<div data-task-filter-project-id-value="<%= @project.id %>" class="my-3">
-  <%= form_with(url: @project, method: "get", data: { action: "submit->task-filter#searchTags"}, class: "form-inline") do |tf| %>
+  <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
     <div class="form-group mr-3">
       <%= tf.label :tag_name, "Tag", class: "mr-2" %>
       <%= tf.text_field :tag_name, class: "form-control-sm" %>
@@ -13,11 +28,8 @@
   <% end %>
 </div>
 
-
-
-
-  <div id="scroll" data-task-filter-target="list">
-    <% @project.tasks.sorted_tasks_by_done.each do |task| %>
+  <div id="scroll">
+    <% @tasks.each do |task| %>
       <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
         <div class="d-flex row">
           <div class="d-flex col">

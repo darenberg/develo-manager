@@ -61,15 +61,12 @@ class ProjectsController < ApplicationController
     elsif params[:create].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component")
     elsif params[:tag_name].present?
-      puts "hola #{params[:tag_name]}"
-      #@tasks = @project.tasks.take(2)
       @tasks = @project.tasks.includes(:tags).where(tags: {tag_name: params[:tag_name]}).uniq
-
-      respond_to do |format|
-        #format.html
-        puts "fomrat.text"
-        format.text { render partial: "projects/show_components/task_component", locals: {project: @project, dots: @dots, tasks: @tasks, plans: @plans, floors: @floors }, formats: [:html]}
-      end
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/show_components/tasks_component")
+    elsif params[:dot_id].present?
+      @dot = Dot.find(params[:dot_id])
+      @tasks = @dot.tasks
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/show_components/tasks_component")
     else
       render :show, status: :ok, location: @project
     end
