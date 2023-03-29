@@ -50,8 +50,8 @@ export default class extends Controller {
     resetStageButtonsColors() {
       this.stageBtnTargets.forEach((stage) => {
         console.log(stage);
-        stage.classList.add("plan-btn")
-        stage.classList.remove("plan-btn-darker")
+        stage.classList.add("plan-btn-stages")
+        stage.classList.remove("plan-btn-stages-darker")
       });
     }
 
@@ -68,11 +68,12 @@ export default class extends Controller {
 
 
     changePlan(event) {
-      const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
+      const currentFloor = this.stageBtnTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
       const plan = currentFloor.querySelector(`#map-${event.target.id}`);
       this.hideAllPlans();
       this.resetStageButtonsColors();
       event.target.classList.remove("plan-btn-stages")
+      console.log("hola from change plan")
       event.target.classList.add("plan-btn-stages-darker")
       plan.classList.remove("d-none");
       sessionStorage.setItem("mapPlan", event.target.id);
