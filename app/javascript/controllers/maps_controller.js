@@ -68,7 +68,7 @@ export default class extends Controller {
 
 
     changePlan(event) {
-      const currentFloor = this.stageBtnTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
+      const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
       const plan = currentFloor.querySelector(`#map-${event.target.id}`);
       this.hideAllPlans();
       this.resetStageButtonsColors();
