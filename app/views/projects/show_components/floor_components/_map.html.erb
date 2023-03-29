@@ -1,85 +1,25 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<div >
-  <% @project.floors.each do |floor| %>
-    <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
-      <% floor.plans.each do |plan| %>
-        <div class="d-none" id="map-plan-<%= plan.stage %>">
+<% @project.floors.each do |floor| %>
+  <div id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
+    <% floor.plans.each do |plan| %>
+      <div class="d-none" id="map-plan-<%= plan.stage %>">
+        <div class="d-flex align-items-center justify-content-between">
+          <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+            <%= f.input :photo, as: :file %>
+            <%= f.submit %>
+          <% end %>
           <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+        <div class="card mt-3">
+          <div class="card-body">
             <% plan.dots.each do |dot|%>
               <button class="dotbutton" id="dotbutton<%=dot.id%>">dot-<%=dot.id%></button>
             <% end %>
-            <%=floor.number%>
-            <%=plan.stage%>
-            <% plan.photo %>
             <% if plan.photo.attached? %>
-              <%= cl_image_tag plan.photo.key, height: 300, width: 400, crop: :fill %>
-              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-                <%= f.input :photo, as: :file %>
-                <%= f.submit %>
-              <% end %>
-            <% else %>
-              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-                <%= f.input :photo, as: :file %>
-                <%= f.submit %>
+              <img src="<%= cl_image_path plan.photo.key, height: 300, width: 400, crop: :fill %>" alt="Plan image" class="card-img">
             <% end %>
-          <% end %>
+          </div>
         </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-<script>
-  dragElement(document.getElementById("dot-<%@project.floors.first.plans.first.dots.first.id%>"));
-
-
-  function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.querySelector(elmnt.id+ "header")) {
-      // if present, the header is where you move the DIV from:
-      document.querySelector(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-      // otherwise, move the DIV from anywhere inside the DIV:
-      elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-      e = e || window.event;
-      e.preventDefault();
-      // get the mouse cursor position at startup:
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = closeDragElement;
-      // call a function whenever the cursor moves:
-      document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-      e = e || window.event;
-      e.preventDefault();
-      // calculate the new cursor position:
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      // set the element's new position:
-      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-      // stop moving when mouse button is released:
-      document.onmouseup = null;
-      document.onmousemove = null;
-    }
-  }
-
-</script>
-// figure out how to save the position of the dot to the dot model maybe using ajax
-// figure out how to make the dots click to shwo the tasks relevant to that dot
-// sleep
-// maybe cry
-// probably not
-// make it prettier
+      </div>
+    <% end %>
+  </div>
+<% end %>

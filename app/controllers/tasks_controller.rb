@@ -16,7 +16,10 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    form_tags = params[:task][:tag_names]
+    create_tags(form_tags)
     if @task.update(task_params)
+      # create_tags(params[:tags][:tags])
       @project = @task.dot.plan.floor.project
       render "projects/show", status: :ok, location: @project
     else
@@ -33,7 +36,8 @@ class TasksController < ApplicationController
   private
 
   def create_tags(tags)
-    split_tags = tags.split(" ")
+    @task.tags.destroy_all
+    split_tags = tags.split(", ")
     split_tags.each do |tag|
       Tag.create(tag_name: tag, task: @task)
     end
