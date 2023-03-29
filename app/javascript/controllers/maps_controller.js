@@ -12,49 +12,21 @@ export default class extends Controller {
 
   connect() {
     console.log("HELLO THIS IS CONNECTED!!!");
-    const floor0 = this.mapFloorsTargets.find((target) => target.id === "map-floor0");
-    const planExisting = floor0.querySelector("#map-plan-Existing");
-    sessionStorage.setItem("mapPlan", "plan-Existing");
-    planExisting.classList.remove("d-none");
 
-    $(function() {
-      let isDragging = false;
-      let currentX;
-      let currentY;
-      let initialX;
-      let initialY;
-      let xOffset = 0;
-      let yOffset = 0;
+  }
 
-      $('.draggable').mousedown(function(e) {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
+  displayDotTasks(e) {
+    // fetch to the project show to retrieve the tasks of this dot
+    e.preventDefault();
+    console.log("hola");
+    const url = `${e.target.action}?dot_id=${e.target.querySelector("input").value}`
+    fetch(url, { headers: {"Accept": "text/plain"} })
+      .then(response => response.text())
+      .then((data) => {
+        this.buttonTarget.outerHTML = data
 
-        if (e.target === $('.draggable')[0]) {
-          isDragging = true;
-        }
-      });
-
-      $('.parent').mousemove(function(e) {
-        if (isDragging) {
-          e.preventDefault();
-
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
-
-          xOffset = currentX;
-          yOffset = currentY;
-
-          $('.draggable').css('left', `${currentX}px`);
-          $('.draggable').css('top', `${currentY}px`);
-        }
-      });
-
-      $('.parent').mouseup(function(e) {
-        isDragging = false;
-      });
-    });
-    }
+      })
+  }
 
     hideAllPlans() {
       this.mapFloorsTargets.forEach((floor) => {
@@ -86,5 +58,7 @@ export default class extends Controller {
     deleteFloor(event) {
       const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
     }
+
+
 
 }

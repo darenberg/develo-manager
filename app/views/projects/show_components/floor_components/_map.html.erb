@@ -7,9 +7,11 @@
       <% floor.plans.each do |plan| %>
         <div class="d-none" id="map-plan-<%= plan.stage %>">
           <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+          <div class="dots">
             <% plan.dots.each do |dot|%>
-              <button class="draggable"><%dot.id%></button>
+              <button class="draggable" data-action="click->maps#displayDotTasks"><%dot.id%></button>
             <% end %>
+          </div>
             <%=floor.number%>
             <%=plan.stage%>
             <% plan.photo %>
