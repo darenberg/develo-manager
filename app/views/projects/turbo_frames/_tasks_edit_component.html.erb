@@ -1,13 +1,29 @@
-<div class="mt-5">
-  <div class="task_back_btn mb-2"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
-  <%= simple_form_for(task, url: dot_task_path(task.dot, task), method: :patch) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :tags %>
-    <%# <%= f.input :content %>
-  <label for="message" class="label-message">Content</label>
-  <textarea id="message" name="message" cols="75" rows="5" maxlength="600" class="field field-message"></textarea>
-    <%= f.input :done, as: :boolean  %>
-    <%# <%= f.submit  %>
-     <input type="submit" name="commit" value="Update task" data-disable-with="Log in" class="form-btn">
-  <% end %>
-</div>
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 col-lg-12 col-xl-10">
+        <div class="card o-hidden border-0 my-5 orange-shadow">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="p-5">
+                <div class="text-center">
+                  <h2>Update your project </h2>
+                </div>
+                  <%= simple_form_for(task, url: dot_task_path(task.dot, task), method: :patch) do |f| %>
+                    <%= f.input :title %>
+                    <%= f.input :content %>
+                    <%= f.input :photo, as: :file %>
+                    <%= f.label :tags, "Tags (comma-separated)" %>
+                    <%= f.text_field :tag_names, value: task.formatted_tags %>
+                    <%= f.input :done, as: :boolean  %>
+                    <input class="form-btn" <%= f.submit  %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,9 +1,30 @@
 <%# This is hardcoded, we are always creating a task for the first dot of the plan %>
-<%= simple_form_for([@project.floors.first.plans.first.dots.first, Task.new], method: :post) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content %>
-  <%= simple_fields_for :tags do |t| %>
-    <%= t.input :tags %>
-  <% end %>
-  <%= f.submit  %>
-<% end %>
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 col-lg-12 col-xl-10">
+        <div class="card o-hidden border-0 my-5 orange-shadow">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="p-5">
+                <div class="text-center">
+                  <h2>New task</h2>
+                </div>
+                  <%= simple_form_for([@project.floors.first.plans.first.dots.first, Task.new], method: :post) do |f| %>
+                    <%= f.input :title %>
+                    <%= f.input :content %>
+                    <%= f.input :photo, as: :file %>
+                    <%= simple_fields_for :tags do |t| %>
+                      <%= t.input :tags %>
+                    <% end %>
+                    <input class="form-btn" <%= f.submit  %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

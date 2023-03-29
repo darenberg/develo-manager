@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
-  static targets = ["mapFloors", "drag"]
+  static targets = ["mapFloors", "drag", "floorButton", "stageBtn"]
 
   // <script>
   //   $(document).ready(function() {
@@ -16,8 +16,20 @@ export default class extends Controller {
     const planExisting = floor0.querySelector("#map-plan-Existing");
     sessionStorage.setItem("mapPlan", "plan-Existing");
     planExisting.classList.remove("d-none");
+  }
 
-    }
+  displayDotTasks(e) {
+    // fetch to the project show to retrieve the tasks of this dot
+    e.preventDefault();
+    console.log("holaaaaaaa");
+    const url = `${e.target.action}?dot_id=${e.target.querySelector("input").value}`
+    fetch(url, { headers: {"Accept": "text/plain"} })
+      .then(response => response.text())
+      .then((data) => {
+        this.buttonTarget.outerHTML = data
+
+      })
+  }
 
     hideAllPlans() {
       this.mapFloorsTargets.forEach((floor) => {
@@ -27,12 +39,29 @@ export default class extends Controller {
       });
     }
 
+    resetFloorButtonsColors() {
+      this.floorButtonTargets.forEach((floor) => {
+        floor.classList.add("floor-btn")
+        floor.classList.remove("orange-btn-darker")
+      });
+    }
+
+
+    resetStageButtonsColors() {
+      this.stageBtnTargets.forEach((stage) => {
+        console.log(stage);
+        stage.classList.add("plan-btn")
+        stage.classList.remove("plan-btn-darker")
+      });
+    }
 
     changeFloor(event) {
-      console.log(this.mapFloorsTargets);
       const floor = this.mapFloorsTargets.find((target) => target.id === `map-${event.target.id}`);
       const planExisting = floor.querySelector(`#map-${sessionStorage.getItem("mapPlan")}`);
       this.hideAllPlans();
+      this.resetFloorButtonsColors();
+      event.target.classList.remove("floor-btn")
+      event.target.classList.add("orange-btn-darker")
       planExisting.classList.remove("d-none");
       sessionStorage.setItem("mapFloor", event.target.id);
     }
@@ -42,6 +71,9 @@ export default class extends Controller {
       const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
       const plan = currentFloor.querySelector(`#map-${event.target.id}`);
       this.hideAllPlans();
+      this.resetStageButtonsColors();
+      event.target.classList.remove("plan-btn")
+      event.target.classList.add("plan-btn-darker")
       plan.classList.remove("d-none");
       sessionStorage.setItem("mapPlan", event.target.id);
     }
@@ -49,5 +81,4 @@ export default class extends Controller {
     deleteFloor(event) {
       const currentFloor = this.mapFloorsTargets.find((target) => target.id === `map-${sessionStorage.getItem("mapFloor")}`);
     }
-
 }
