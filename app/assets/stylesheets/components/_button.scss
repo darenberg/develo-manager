@@ -165,30 +165,16 @@
 
 
 .delete-btn {
-  position: relative;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.delete-btn i {
-  position: absolute;
-  top: 0;
-  left: -30px;
-  width: 30px;
-  height: 30px;
-  background-color: #ff0000;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
-  opacity: 0;
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  cursor: pointer;
 }
 
-.delete-btn:hover i {
-  opacity: 1;
-  transform: translateX(30px);
-}
 
 .dotbutton {
   position: absolute;
