@@ -18,43 +18,6 @@ export default class extends Controller {
     planExisting.classList.remove("d-none");
     // this.addDarkColorToFirstButtonAndPlan();
 
-    $(function() {
-      let isDragging = false;
-      let currentX;
-      let currentY;
-      let initialX;
-      let initialY;
-      let xOffset = 0;
-      let yOffset = 0;
-
-      $('.draggable').mousedown(function(e) {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-
-        if (e.target === $('.draggable')[0]) {
-          isDragging = true;
-        }
-      });
-
-      $('.parent').mousemove(function(e) {
-        if (isDragging) {
-          e.preventDefault();
-
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
-
-          xOffset = currentX;
-          yOffset = currentY;
-
-          $('.draggable').css('left', `${currentX}px`);
-          $('.draggable').css('top', `${currentY}px`);
-        }
-      });
-
-      $('.parent').mouseup(function(e) {
-        isDragging = false;
-      });
-    });
     }
 
     // addDarkColorToFirstButtonAndPlan() {
