@@ -201,37 +201,41 @@
   max-width: 600px;
 }
 
-.form-control {
-  border-radius: 20px;
-  border: none;
-  color: #555;
-  background-color: #fff;
+.form-group {
+  display: inline-block;
 }
 
-
-.input-group-prepend {
-  background-color: #fff;
-  border: none;
-  border-radius: 20px 0 0 20px;
+/* Style for search button */
+.btn {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  margin-left: -5px; /* To bring the button closer to the search bar */
 }
 
-.btn-custom {
+/* Style for "Add task for this dot" button */
+.btn-primary {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+}
+
+/* Style for submit button in the task form */
+input[type="submit"] {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
   background-color: #d96d00;
-  border: none;
-  border-radius: 0 20px 20px 0;
   color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.btn-custom:hover {
+.form-control-sm {
+  border-radius: 20px;
+}
+
+.btn {
+  border-radius: 20px;
+  margin-left: -1px;
+}
+
+.btn:hover {
   background-color: #5d2f00;
   color: #fff;
-}
-
-.create-task-link {
-  text-decoration: none;
-  color: #d96d00;
-  font-size: 40px;
-  float: center;
 }

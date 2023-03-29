@@ -1,31 +1,34 @@
 <div>
-  <% if @dot.present? %>
-    <div data-controller="new-task">
-      <div class="my-3">
-        <button data-action="click->new-task#toggleForm" class="btn btn-primary">Add task for this dot</button>
-      </div>
-      <div data-new-task-target="form" class="d-none">
-        <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
-          <%= f.input :title %>
-          <%= f.input :content %>
-          <%= f.input :photo, as: :file %>
-          <%= simple_fields_for :tags do |t| %>
-            <%= t.input :tags %>
+    <% if @dot.present? %>
+      <div data-controller="new-task">
+        <div class="my-3">
+          <button data-action="click->new-task#toggleForm" class="btn btn-primary">Add task for this dot</button>
+        </div>
+        <div data-new-task-target="form" class="d-none">
+          <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
+            <%= f.input :title %>
+            <%= f.input :content %>
+            <%= f.input :photo, as: :file %>
+            <%= simple_fields_for :tags do |t| %>
+              <%= t.input :tags %>
+            <% end %>
+            <%= f.submit  %>
           <% end %>
-          <%= f.submit  %>
-        <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-<%= @project.title %>
-<div class="my-3">
-  <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
-    <div class="form-group mr-3">
-      <%= tf.label :tag_name, "Tag", class: "mr-2" %>
-      <%= tf.text_field :tag_name, class: "form-control-sm" %>
-    </div>
-      <% end %>
-</div>
+    <% end %>
+  <%= @project.title %>
+
+  <div class="my-3">
+    <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
+      <div class="form-group mr-3">
+        <%= tf.label :tag_name, "Tag", class: "mr-2" %>
+        <%= tf.text_field :tag_name, class: "form-control-sm" %>
+      </div>
+      <%= tf.submit "Search", class: "btn search-btn", data: {toggle: "tooltip"}, title: "Search" %>
+    <% end %>
+  </div>
+
 
   <div id="scroll">
     <% @tasks.each do |task| %>
@@ -46,11 +49,9 @@
                 </div>
                 <div class="d-flex col-4 h-100">
                   <p class="tags">
-                    <%array_of_tags = []%>
-                    <%array_of_tags << task.tags.split(" ")%>
-                    <%array_of_tags.map do |tag| %>
-                    Tags: #<%=tag%></p>
-                  <% end %>
+                    Tags:
+                    <%= task.formatted_tags_with_hashtag %>
+                  </p>
                 </div>
             </div>
           </div>
@@ -58,6 +59,4 @@
       <% end %>
     <% end %>
   </div>
-
-
 </div>
