@@ -1,25 +1,23 @@
+
 <div data-controller="task-filter">
-<%= @project.title %>
-<div data-task-filter-project-id-value="<%= @project.id %>" class="d-flex my-3">
-  <div class="d-flex my-3">
-    <%= form_with(url: @project, method: "get", data: { action: "submit->task-filter#searchTags"}, class: "form-inline rounded-left") do |tf| %>
-      <div class="input-group">
-        <%= tf.label :tag_name, "Tag ", class: "input-group-prepend" %>
-        <%= tf.text_field :tag_name, class: "form-control form-control-sm rounded-5 border-1 bg-white", placeholder: "Search for tags" %>
-        <%= tf.submit "Search", class: "btn btn-custom rounded-5 ml-1", style: "border-color: #d98600; background-color: #d98600;" %>
-        
-          <%= link_to "+", project_path(@project, create: true), class: "btn btn-primary rounded-5", method: :get, remote: true %>
-        
-      </div>
-    <% end %>
-  </div>
+  <p><%= @project.title%><p>
+  <%= link_to "+",  project_path(@project, create: true), method: :get, remote: true, class: "create-task-link" %>
+    <div data-task-filter-project-id-value="<%=@project.id %>" >
+    <div class="d-flex my-3 text-center">
+      <%= form_with(url: @project, method: "get", data: { action: "submit->task-filter#searchTags"}, class: "form-inline") do |tf| %>
+        <div class="input-group">
+          <%= tf.label :tag_name, "tags", class: "input-group-prepend" %>
+          <%= tf.text_field :tag_name, class: "form-control form-control-sm", placeholder: "Search for tags" %>
+          <%= tf.submit "Search", class: "btn btn-custom ml-1" %>
+    </div>
+      <% end %>
 </div>
 
+  </div>
 
 
-
-  <div id="scroll" data-task-filter-target="list">
-    <% @project.tasks.sorted_tasks_by_done.each do |task| %>
+  <div id="scroll" data-task-filter-target="list" class="border-end">
+    <% @tasks.each do |task| %>
       <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
         <div class="d-flex row">
           <div class="d-flex col">
@@ -37,9 +35,11 @@
                 </div>
                 <div class="d-flex col-4 h-100">
                   <p class="tags">
-                    Tags:
-                    <%= task.formatted_tags_with_hashtag %>
-                  </p>
+                    <%array_of_tags = []%>
+                    <%array_of_tags << task.tags.split(" ")%>
+                    <%array_of_tags.map do |tag| %>
+                    Tags: #<%=tag%></p>
+                  <% end %>
                 </div>
             </div>
           </div>

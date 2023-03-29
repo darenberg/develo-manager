@@ -201,21 +201,37 @@
   max-width: 600px;
 }
 
-.btn-primary:hover {
-  background-color: #b85800;
-  border-color: #b85800;
-  color: #fff;
+.form-control {
+  border-radius: 20px;
+  border: none;
+  color: #555;
+  background-color: #fff;
+}
+
+
+.input-group-prepend {
+  background-color: #fff;
+  border: none;
+  border-radius: 20px 0 0 20px;
 }
 
 .btn-custom {
   background-color: #d96d00;
-  border-color: #d96d00;
+  border: none;
+  border-radius: 0 20px 20px 0;
   color: #fff;
-  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-custom:hover {
-  background-color: #b85800;
-  border-color: #b85800;
+  background-color: #5d2f00;
   color: #fff;
+}
+
+.create-task-link {
+  text-decoration: none;
+  color: #d96d00;
+  font-size: 40px;
+  float: center;
 }
