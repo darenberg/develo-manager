@@ -1,0 +1,21 @@
+.card {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.draggable {
+  height: 35px;
+  line-height: 35px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  margin: 0 5px;
+}
+.dot-btn {
+  margin: 0 5px;
+}

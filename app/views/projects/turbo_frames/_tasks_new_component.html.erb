@@ -2,6 +2,7 @@
 <%= simple_form_for([@project.floors.first.plans.first.dots.first, Task.new], method: :post) do |f| %>
   <%= f.input :title %>
   <%= f.input :content %>
+  <%= f.input :photo, as: :file %>
   <%= simple_fields_for :tags do |t| %>
     <%= t.input :tags %>
   <% end %>
