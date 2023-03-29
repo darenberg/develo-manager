@@ -32,26 +32,34 @@ buttons.forEach(function(button) {
   });
 
   button.addEventListener('mousemove', function(event) {
-    if (isDragging) {
-      const newX = event.clientX - startX;
-      const newY = event.clientY - startY;
+  if (isDragging) {
+    const containerRect = buttonContainer.getBoundingClientRect();
+    const buttonRect = button.getBoundingClientRect();
 
-      // Limit the movement of the button to the container
-      const containerRect = buttonContainer.getBoundingClientRect();
-      const buttonRect = button.getBoundingClientRect();
+    const maxX = containerRect.width - buttonRect.width;
+    const maxY = containerRect.height - buttonRect.height;
 
-      const minX = 0 - buttonRect.left;
-      const maxX = window.innerWidth - buttonRect.right;
-      const minY = 0 - buttonRect.top;
-      const maxY = window.innerHeight - buttonRect.bottom;
+    let newX = event.clientX - containerRect.left - (buttonRect.width / 2);
+    let newY = event.clientY - containerRect.top - (buttonRect.height / 2);
 
-      const limitedX = Math.min(Math.max(newX, minX), maxX);
-      const limitedY = Math.min(Math.max(newY, minY), maxY);
-
-      button.style.left = limitedX + 'px';
-      button.style.top = limitedY + 'px';
+    if (newX < 0) {
+      newX = 0;
+    } else if (newX > maxX) {
+      newX = maxX;
     }
-  });
+
+    if (newY < 0) {
+      newY = 0;
+    } else if (newY > maxY) {
+      newY = maxY;
+    }
+
+    button.style.left = newX + 'px';
+    button.style.top = newY + 'px';
+  }
+});
+
+
 
   button.addEventListener('mouseup', function(event) {
     isDragging = false;

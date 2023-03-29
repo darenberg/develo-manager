@@ -1,6 +1,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
 <div>
   <% @project.floors.each do |floor| %>
     <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
@@ -13,7 +11,9 @@
             <div id="button-container">
               <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
               <% plan.dots.each do |dot|%>
-                <button class="dotbutton" id="dotbutton<%=dot.id%>">dot-<%=dot.id%></button>
+                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>">
+                  <%= link_to "dot-#{dot.id}", project_path(@project, dot_id: dot.id), class: "text-decoration-none text-white", method: :get, remote: true %>
+                </button>
               <% end %>
                 <%= cl_image_tag plan.photo.key, height: 300, width: 400, crop: :fill %>
             </div>
