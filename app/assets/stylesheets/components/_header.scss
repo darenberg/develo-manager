@@ -6,6 +6,7 @@
   position: relative;
   display: flex;
   justify-content: flex-end;
+  height: 70px;
 
   .logo {
     color: #0f0f0f;
@@ -14,7 +15,7 @@
     left: 0;
     font-size: 32px;
     font-weight: 100;
-    padding: 24px;
+    padding: 10px;
     border-right: 1px solid black;
   }
   .logo a {
@@ -86,8 +87,4 @@ header.masthead {
   padding: 10px;
   outline: none;
   border-radius: 4px;
-}
-.transparent-white-btn:hover {
-  color: #001F3F;
-  background-color: #fff;
 }
