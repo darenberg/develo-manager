@@ -36,8 +36,7 @@ Plan.all.each do |plan|
     rand(1..5).times do
       Task.create(dot: dot,
         title: Faker::Book.title,
-  content: Faker::Fantasy::Tolkien.poem,
-  # category: Faker::Book.genre,
+  content: Faker::Fantasy::Tolkien.poem
 )
 end
 end

@@ -9,3 +9,32 @@
     </div>
   </div>
 </div>
+<script>
+    // Define stimulus
+    const stimulus = 'mousedown';
+
+    // Add event listeners to each dotbutton
+    const dotbuttons = document.querySelectorAll('.dotbutton');
+    dotbuttons.forEach(function(dotbutton) {
+      let startX, startY, isDragging = false;
+
+      dotbutton.addEventListener(stimulus, function(event) {
+        isDragging = true;
+        startX = event.clientX - dotbutton.offsetLeft;
+        startY = event.clientY - dotbutton.offsetTop;
+      });
+
+      document.addEventListener('mousemove', function(event) {
+        if (isDragging) {
+          const newX = event.clientX - startX;
+          const newY = event.clientY - startY;
+          dotbutton.style.left = newX + 'px';
+          dotbutton.style.top = newY + 'px';
+        }
+      });
+
+      dotbutton.addEventListener('mouseup', function(event) {
+        isDragging = false;
+      });
+    });
+  </script>
