@@ -9,32 +9,53 @@
     </div>
   </div>
 </div>
+
+
 <script>
-    // Define stimulus
-    const stimulus = 'mousedown';
 
-    // Add event listeners to each dotbutton
-    const dotbuttons = document.querySelectorAll('.dotbutton');
-    dotbuttons.forEach(function(dotbutton) {
-      let startX, startY, isDragging = false;
+// Define stimulus
+const stimulus = 'mousedown';
 
-      dotbutton.addEventListener(stimulus, function(event) {
-        isDragging = true;
-        startX = event.clientX - dotbutton.offsetLeft;
-        startY = event.clientY - dotbutton.offsetTop;
-      });
+// Get the button container
+const buttonContainer = document.getElementById('button-container');
 
-      document.addEventListener('mousemove', function(event) {
-        if (isDragging) {
-          const newX = event.clientX - startX;
-          const newY = event.clientY - startY;
-          dotbutton.style.left = newX + 'px';
-          dotbutton.style.top = newY + 'px';
-        }
-      });
+// Add event listeners to each button
+const buttons = document.querySelectorAll('.dotbutton');
 
-      dotbutton.addEventListener('mouseup', function(event) {
-        isDragging = false;
-      });
-    });
+let startX, startY, isDragging = false;
+
+buttons.forEach(function(button) {
+  button.addEventListener(stimulus, function(event) {
+    isDragging = true;
+    startX = event.clientX - button.offsetLeft;
+    startY = event.clientY - button.offsetTop;
+  });
+
+  button.addEventListener('mousemove', function(event) {
+    if (isDragging) {
+      const newX = event.clientX - startX;
+      const newY = event.clientY - startY;
+
+      // Limit the movement of the button to the container
+      const containerRect = buttonContainer.getBoundingClientRect();
+      const buttonRect = button.getBoundingClientRect();
+
+      const minX = 0 - buttonRect.left;
+      const maxX = window.innerWidth - buttonRect.right;
+      const minY = 0 - buttonRect.top;
+      const maxY = window.innerHeight - buttonRect.bottom;
+
+      const limitedX = Math.min(Math.max(newX, minX), maxX);
+      const limitedY = Math.min(Math.max(newY, minY), maxY);
+
+      button.style.left = limitedX + 'px';
+      button.style.top = limitedY + 'px';
+    }
+  });
+
+  button.addEventListener('mouseup', function(event) {
+    isDragging = false;
+  });
+});
+
   </script>

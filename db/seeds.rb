@@ -33,7 +33,7 @@ end
 Plan.all.each do |plan|
   rand(1..8).times do
     dot = Dot.create(plan: plan)
-    rand(1..5).times do
+    rand(1..3).times do
       Task.create(dot: dot,
         title: Faker::Book.title,
   content: Faker::Fantasy::Tolkien.poem
