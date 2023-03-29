@@ -3,14 +3,6 @@
   <div id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
     <% floor.plans.each do |plan| %>
       <div class="d-none" id="map-plan-<%= plan.stage %>">
-        <div class="d-flex align-items-center justify-content-between">
-          <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-            <%= f.input :photo, as: :file %>
-            <%= f.submit %>
-          <% end %>
-          <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
-        </div>
-        <div class="card mt-3">
           <div class="card-body">
             <% plan.dots.each do |dot|%>
               <%= link_to project_path(@project, dot_id: dot.id), class: "dotbutton", method: :get, remote: true, id: "dotbutton#{dot.id}" do %>
@@ -18,9 +10,17 @@
               <% end %>
             <% end %>
             <% if plan.photo.attached? %>
-              <img src="<%= cl_image_path plan.photo.key, height: 300, width: 400, crop: :fill %>" alt="Plan image" class="card-img">
+              <img src="<%= cl_image_path plan.photo.key, height: 600, width: 700, crop: :fill %>" alt="Plan image" class="card-img">
             <% end %>
           </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+          <%= f.input :photo, as: :file %>
+           <input class="form-btn"<%= f.submit %>
+          <% end %>
+          <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+        </div>
+        <div class="card mt-3">
         </div>
       </div>
     <% end %>

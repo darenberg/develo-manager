@@ -17,6 +17,37 @@
   text-decoration: none;
 }
 
+.plan-btn-stages {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #d98600;
+  padding: 7px 20px 10px 20px;
+  text-decoration: none;
+  border: none;
+  margin: -2px 10px 10px 50px;
+}
+
+.plan-btn-stages-darker {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #d98600;
+  padding: 7px 20px 10px 20px;
+  text-decoration: none;
+  border: none;
+  margin: -2px 10px 10px 50px;
+}
+.plan-btn-stages:hover {
+  background: #5d2f00;
+  text-decoration: none;
+}
 .orange-btn-darker {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
