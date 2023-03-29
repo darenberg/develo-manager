@@ -202,3 +202,22 @@
   position: relative;
   max-width: 600px;
 }
+
+.btn-primary:hover {
+  background-color: #b85800;
+  border-color: #b85800;
+  color: #fff;
+}
+
+.btn-custom {
+  background-color: #d96d00;
+  border-color: #d96d00;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.btn-custom:hover {
+  background-color: #b85800;
+  border-color: #b85800;
+  color: #fff;
+}
