@@ -9,10 +9,13 @@
             <%= f.submit %>
           <% end %>
           <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+        </div>
         <div class="card mt-3">
           <div class="card-body">
             <% plan.dots.each do |dot|%>
-              <button class="dotbutton" id="dotbutton<%=dot.id%>">dot-<%=dot.id%></button>
+              <%= link_to project_path(@project, dot_id: dot.id), class: "dotbutton", method: :get, remote: true, id: "dotbutton#{dot.id}" do %>
+                dot-<%= dot.id %>
+              <% end %>
             <% end %>
             <% if plan.photo.attached? %>
               <img src="<%= cl_image_path plan.photo.key, height: 300, width: 400, crop: :fill %>" alt="Plan image" class="card-img">
