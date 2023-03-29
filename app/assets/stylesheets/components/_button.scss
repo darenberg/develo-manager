@@ -231,3 +231,37 @@
   position: relative;
   max-width: 600px;
 }
+
+.form-group {
+  display: inline-block;
+}
+
+
+
+.btn {
+  border-radius: 20px;
+  margin-left: -1px;
+}
+
+.btn:hover {
+  background-color: #5d2f00;
+  color: #fff;
+}
+
+.btn-primary {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+}
+
+
+input[type="submit"] {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  background-color: #d96d00;
+  color: #fff;
+}
+
+.form-control-sm {
+  border-radius: 20px;
+}
+
