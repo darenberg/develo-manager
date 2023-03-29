@@ -16,24 +16,20 @@ export default class extends Controller {
     const planExisting = floor0.querySelector("#map-plan-Existing");
     sessionStorage.setItem("mapPlan", "plan-Existing");
     planExisting.classList.remove("d-none");
-    // this.addDarkColorToFirstButtonAndPlan();
+  }
 
-    }
+  displayDotTasks(e) {
+    // fetch to the project show to retrieve the tasks of this dot
+    e.preventDefault();
+    console.log("holaaaaaaa");
+    const url = `${e.target.action}?dot_id=${e.target.querySelector("input").value}`
+    fetch(url, { headers: {"Accept": "text/plain"} })
+      .then(response => response.text())
+      .then((data) => {
+        this.buttonTarget.outerHTML = data
 
-    // addDarkColorToFirstButtonAndPlan() {
-    //   this.floorButtonTargets.forEach((floor) => {
-    //     if (floor.id == "map-floor0") {
-    //       floor.classList.remove("floor-btn")
-    //       floor.classList.add("orange-btn-darker")
-    //     }
-    //   });
-    //   this.stageBtnTargets.forEach((stage) => {
-    //     if (stage.id == "plan-Existing") {
-    //       stage.classList.remove("plan-btn")
-    //       stage.classList.add("plan-btn-darker")
-    //     }
-    //   });
-    // }
+      })
+  }
 
     hideAllPlans() {
       this.mapFloorsTargets.forEach((floor) => {
