@@ -205,20 +205,24 @@
   display: inline-block;
 }
 
-/* Style for search button */
+
+
 .btn {
-  border-radius: 25px;
-  padding: 0.5rem 1rem;
-  margin-left: -5px; /* To bring the button closer to the search bar */
+  border-radius: 20px;
+  margin-left: -1px;
 }
 
-/* Style for "Add task for this dot" button */
+.btn:hover {
+  background-color: #5d2f00;
+  color: #fff;
+}
+
 .btn-primary {
   border-radius: 25px;
   padding: 0.5rem 1rem;
 }
 
-/* Style for submit button in the task form */
+
 input[type="submit"] {
   border-radius: 25px;
   padding: 0.5rem 1rem;
@@ -230,12 +234,3 @@ input[type="submit"] {
   border-radius: 20px;
 }
 
-.btn {
-  border-radius: 20px;
-  margin-left: -1px;
-}
-
-.btn:hover {
-  background-color: #5d2f00;
-  color: #fff;
-}
