@@ -1,18 +1,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div>
+  <div class="trick-div">
+    <div id="button-container">
+    </div>
+  </div>
   <% @project.floors.each do |floor| %>
     <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
       <% floor.plans.each do |plan| %>
         <div class="d-none" id="map-plan-<%= plan.stage %>">
           <% if plan.photo.attached? %>
-            <%= button_to "+", plan_dots_path(plan), method: :post, class:"btn dot-btn" %>
-            <div id="button-container">
+            <div class="d-flex" id="new-dot">
+              <h4><strong>Dot</strong></h4>
+              <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+            </div>
+            <div class="trick-div">
+
               <% plan.dots.each do |dot|%>
-                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>" data-dot-x=<%= dot.x_position %> data-dot-y=<%= dot.y_position %>>
+                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>" data-dot-x="<%= dot.x_position || 0 %>" data-dot-y="<%= dot.y_position || 0%>">
                   <%= link_to "#{dot.id}", project_path(@project, dot_id: dot.id), class: "text-decoration-none text-white", method: :get, remote: true %>
                 </button>
               <% end %>
-                <%= cl_image_tag plan.photo.key, height: 550, width: 550, crop: :fill, data: { plan_id: plan.id } %>
+              <%= cl_image_tag plan.photo.key, height: 498, width: 498, data: { plan_id: plan.id } %>
+            </div>
+          <% end %>
+            <div class="form-position">
+              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+                <%= f.input :photo, as: :file %>
+                <%= f.submit %>
             </div>
           <% end %>
           <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
