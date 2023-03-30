@@ -11,6 +11,9 @@
 </div>
 
 
+<%# <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>" data-dot-x=<%= dot.x_position %> data-dot-x=<%= dot.y_position %>> %>
+//default x and y is 0, for both axis
+
 <script>
 // Define stimulus
 const stimulus = 'mousedown';
@@ -22,12 +25,17 @@ const buttonContainer = document.getElementById('button-container');
 const buttons = document.querySelectorAll('.dotbutton');
 
 let startX, startY, isDragging = false;
-
+<%# <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>" data-dot-x=<%= dot.x_position %> data-dot-x=<%= dot.y_position %>> %>
 buttons.forEach(function(button) {
   button.addEventListener(stimulus, function(event) {
     isDragging = true;
-    startX = event.clientX - button.offsetLeft;
-    startY = event.clientY - button.offsetTop;
+    if (button.dataset.dotX == 0 && button.dataset.dotY == 0) {
+      startX = event.clientX - button.offsetLeft;
+      startY = event.clientY - button.offsetTop;
+    } else {
+      startX = event.clientX - button.dataset.dotX;
+      startY = event.clientY - button.dataset.dotY;
+    }
   });
 
   button.addEventListener('mousemove', function(event) {
