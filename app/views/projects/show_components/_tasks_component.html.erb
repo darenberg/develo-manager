@@ -36,8 +36,7 @@
           </body>
       </div>
     <% end %>
-  <h5 class="mt-2"><%= @project.title %></h5>
-  <div class="d-flex justify-content-center pt-2">
+  <div class="d-flex justify-content-center pt-2 mt-2">
     <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
       <div class="form-group mr-3">
         <%= tf.label :tag_name, "Tag", class: "mr-2" %>
