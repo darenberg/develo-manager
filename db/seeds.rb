@@ -1,5 +1,6 @@
 require 'faker'
 
+
 user = User.create(email: "pana_admin@gmail.com", password: "123456", admin: true)
 User.create!(email: "olivia@gmail.com", password: "123456")
 User.create!(email: "soyiben@gmail.com", password: "123456")
