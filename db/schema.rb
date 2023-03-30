@@ -46,8 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_222005) do
     t.bigint "plan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "x_position"
-    t.float "y_position"
+    t.float "x_position", default: 0.0
+    t.float "y_position", default: 0.0
     t.index ["plan_id"], name: "index_dots_on_plan_id"
   end
 
