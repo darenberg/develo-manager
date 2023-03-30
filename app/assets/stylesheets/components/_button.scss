@@ -255,3 +255,22 @@ input[type="submit"] {
 .form-control-sm {
   border-radius: 20px;
 }
+
+.dot-btn {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: #d98600;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.dot-btn:hover {
+  background-color: #5d2f00;
+}
