@@ -13,15 +13,8 @@
                 <div class="class=mb-3" >
                   <%= simple_form_for(@project) do |f| %>
                     <div class="form-inputs form-control-user">
-                    <%= f.input :title %>
-                    <%= simple_fields_for :project_users do |p| %>
-                    <%= select_tag 'project_users',
-                    options_from_collection_for_select(User.all, :id, :email),
-                    multiple: true, class: 'multiselectuser' %>
-                  <% end %>
-                    </div>
-                    <div class="mt-3">
-                      <input type="submit" name="commit" value="Create" data-disable-with="Create" class="form-btn">
+                      <%= f.input :title %>
+                      <%= f.submit "Create Project", class: "form-btn mt-3" %>
                     </div>
                   <% end %>
                 </div>

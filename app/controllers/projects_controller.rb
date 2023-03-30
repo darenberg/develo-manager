@@ -16,14 +16,14 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-
-
-    unless params[:project_users].empty?
-      params[:project_users].each do |user_id|
-        ProjectUser.new(user_id: user_id, project: @project)
-      end
-    end
-
+    @project.owner = current_user
+    # unless params[:project_users].empty?
+    #   params[:project_users].each do |user_id|
+    #     ProjectUser.new(user_id: user_id, project: @project)
+    #   end
+    # end
+    floor = Floor.create(number: 0, project: @project)
+    create_plans(floor)
     if @project.save!
       redirect_to @project
     else
@@ -51,6 +51,15 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def create_plans(floor)
+    Plan::STAGES.each do |stage|
+      Plan.create(
+        stage: stage,
+        floor: floor
+      )
+    end
+  end
 
   def render_index
 

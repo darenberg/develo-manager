@@ -2,6 +2,7 @@
 <div>
   <div class="trick-div">
     <div id="button-container">
+      <h1 class="position-absolute top-50 start-50">+</h1>
     </div>
   </div>
   <% @project.floors.each do |floor| %>
@@ -14,7 +15,6 @@
               <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
             </div>
             <div class="trick-div">
-
               <% plan.dots.each do |dot|%>
                 <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>" data-dot-x="<%= dot.x_position || 0 %>" data-dot-y="<%= dot.y_position || 0%>">
                   <%= link_to "#{dot.id}", project_path(@project, dot_id: dot.id), class: "text-decoration-none text-white", method: :get, remote: true %>
@@ -23,16 +23,12 @@
               <%= cl_image_tag plan.photo.key, height: 498, width: 498, data: { plan_id: plan.id } %>
             </div>
           <% end %>
-            <div class="form-position">
-              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-                <%= f.input :photo, as: :file %>
-                <%= f.submit %>
-            </div>
-          <% end %>
-          <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-            <%= f.input :photo, as: :file %>
-            <%= f.submit "Update Plan", class: "form-btn" %>
-          <% end %>
+          <div class="form-position">
+            <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+              <%= f.input :photo, as: :file %>
+              <%= f.submit "Update Plan", class: "form-btn" %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
