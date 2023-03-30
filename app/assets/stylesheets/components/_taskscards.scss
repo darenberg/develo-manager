@@ -140,7 +140,8 @@ font-weight: bolder;
 .trick-div {
   position: absolute;
   left: 669px;
-  top: 180px;
+  top: calc(60px + 135px);
+
   width: 500px;
   height: 500px;
   box-shadow: 0 10px 10px rgba(0,0,0,0.2);
