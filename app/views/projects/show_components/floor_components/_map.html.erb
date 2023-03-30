@@ -5,10 +5,10 @@
       <% floor.plans.each do |plan| %>
         <div class="d-none" id="map-plan-<%= plan.stage %>">
           <% if plan.photo.attached? %>
+            <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
             <div id="button-container">
-              <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
               <% plan.dots.each do |dot|%>
-                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>">
+                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>" data-dot-x=<%= dot.x_position %> data-dot-y=<%= dot.y_position %>>
                   <%= link_to "#{dot.id}", project_path(@project, dot_id: dot.id), class: "text-decoration-none text-white", method: :get, remote: true %>
                 </button>
               <% end %>
