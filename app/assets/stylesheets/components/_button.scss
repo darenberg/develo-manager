@@ -185,3 +185,9 @@
   opacity: 0.8;
   border: #d98600;
 }
+
+.dotbutton:active {
+  border: 10px,  #d98600;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+
+}

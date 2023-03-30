@@ -8,11 +8,11 @@
             <div id="button-container">
               <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
               <% plan.dots.each do |dot|%>
-                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>">
+                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>">
                   <%= link_to "#{dot.id}", project_path(@project, dot_id: dot.id), class: "text-decoration-none text-white", method: :get, remote: true %>
                 </button>
               <% end %>
-                <%= cl_image_tag plan.photo.key, height: 550, width: 550, crop: :fill %>
+                <%= cl_image_tag plan.photo.key, height: 550, width: 550, crop: :fill, data: { plan_id: plan.id } %>
             </div>
               <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
                 <%= f.input :photo, as: :file %>
