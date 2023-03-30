@@ -1,3 +1,17 @@
+.dot-btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #d98600;
+  padding: 5px 13px 5px 13px;
+  text-decoration: none;
+  border: none;
+  margin: 3px;
+}
+
 .plan-btn {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
@@ -254,4 +268,13 @@ input[type="submit"] {
 
 .form-control-sm {
   border-radius: 20px;
+}
+
+#new-dot h4 {
+  margin-top: 6px;
+  margin-right: 6px;
+}
+
+#new-dot {
+  margin: 5px;
 }

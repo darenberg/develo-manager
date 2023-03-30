@@ -19,20 +19,18 @@ const stimulus = 'mousedown';
 const buttonContainer = document.getElementById('button-container');
 
 // Add event listeners to each button
-const buttons = document.querySelectorAll('.dotbutton');
+const hats = document.querySelectorAll('.dotbutton');
+console.log(hats);
+let isDragging = false;
+hats.forEach(function(button) {
+  button.style.left = button.dataset.dotX + 'px';
+  button.style.top = button.dataset.dotY + 'px';
 
-let startX, startY, isDragging = false;
-buttons.forEach(function(button) {
-  if (button.dataset.dotX == 0 && button.dataset.dotY == 0) {
-    button.style.left = '0px';
-    button.style.top = '0px';
-  } else {
-    button.style.left = button.dataset.dotX + 'px';
-    button.style.top = button.dataset.dotY + 'px';
-  }
   button.addEventListener(stimulus, function(event) {
     isDragging = true;
   });
+
+
 
   button.addEventListener('mousemove', function(event) {
     if (isDragging) {
