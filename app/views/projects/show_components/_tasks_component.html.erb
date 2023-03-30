@@ -1,10 +1,10 @@
 <div>
     <% if @dot.present? %>
       <div data-controller="new-task" class="justify-content-center">
-        <div class="container row align-items-center">
-          <div class="col-12 my-3">
-            <div class="task_back_btn"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
-            <button data-action="click->new-task#toggleForm" class="form-btn mt-2 ml-4">Add task for this dot</button>
+        <div class=" container row align-items-center">
+          <div class="d-flex align-items-center my-3">
+            <div class="task_back_btn mt-2 ms-4"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
+            <button data-action="click->new-task#toggleForm" class="form-btn mt-2 ms-3">Add task for this dot</button>
           </div>
         </div>
           <body class="bg-gradient-primary">
@@ -23,7 +23,7 @@
                       <%= simple_fields_for :tags do |t| %>
                         <%= t.input :tags %>
                       <% end %>
-                     <input class="form-btn mb-5" <%= f.submit  %>
+                     <%= f.submit "Add task for this dot", class: "form-btn" %>
                     <% end %>
                   </div>
                         </div>
@@ -42,7 +42,7 @@
         <%= tf.label :tag_name, "Tag", class: "mr-2" %>
         <%= tf.text_field :tag_name, class: "form-control-sm" %>
       </div>
-      <%= tf.submit "Search", class: "btn", style: "background-color: #d96d00; color: #fff; border-radius: 20px;", data: {toggle: "tooltip"}, title: "Search" %>
+       <%= tf.submit "Search", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
     <% end %>
   </div>
   <div id="scroll">
