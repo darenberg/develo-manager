@@ -129,3 +129,11 @@ font-weight: bolder;
 #scroll_task_ind::-webkit-scrollbar{
   display: none;
 }
+
+#button-container {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  border: 1px solid black;
+  margin: 50px auto;
+}

@@ -12,4 +12,19 @@ class DotsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def update
+    @dot = Dot.find(params[:id])
+    if @dot.update(dot_params)
+      render json: @dot
+    else
+      render json: @dot.errors, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def dot_params
+    params.require(:dot).permit(:x_position, :y_position, :plan_id)
+  end
 end

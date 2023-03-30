@@ -1,28 +1,31 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<% @project.floors.each do |floor| %>
-  <div id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
-    <% floor.plans.each do |plan| %>
-      <div class="d-none" id="map-plan-<%= plan.stage %>">
-          <div class="card-body">
-            <% plan.dots.each do |dot|%>
-              <%= link_to project_path(@project, dot_id: dot.id), class: "dotbutton", method: :get, remote: true, id: "dotbutton#{dot.id}" do %>
-                dot-<%= dot.id %>
+<div>
+  <% @project.floors.each do |floor| %>
+    <div  id="map-floor<%= floor.number %>" data-maps-target="mapFloors">
+      <% floor.plans.each do |plan| %>
+        <div class="d-none" id="map-plan-<%= plan.stage %>">
+          <% if plan.photo.attached? %>
+            <div id="button-container">
+              <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+              <% plan.dots.each do |dot|%>
+                <button class="dotbutton text-decoration-none" id="dotbutton<%=dot.id%>" data-dot-id="<%=dot.id%>">
+                  <%= link_to "#{dot.id}", project_path(@project, dot_id: dot.id), class: "text-decoration-none text-white", method: :get, remote: true %>
+                </button>
               <% end %>
-            <% end %>
-            <% if plan.photo.attached? %>
-              <img src="<%= cl_image_path plan.photo.key, height: 600, width: 700, crop: :fill %>" alt="Plan image" class="card-img">
-            <% end %>
-          </div>
-        <div class="d-flex align-items-center justify-content-between">
-          <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
-          <%= f.input :photo, as: :file %>
-           <input class="form-btn"<%= f.submit %>
+                <%= cl_image_tag plan.photo.key, height: 550, width: 550, crop: :fill, data: { plan_id: plan.id } %>
+            </div>
+              <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+                <%= f.input :photo, as: :file %>
+                <%= f.submit %>
+              <% end %>
+          <% else %>
+            <%= simple_form_for [floor,plan], remote: true,  method: :patch do |f| %>
+              <%= f.input :photo, as: :file %>
+              <%= f.submit %>
           <% end %>
-          <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+          <% end %>
         </div>
-        <div class="card mt-3">
-        </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
