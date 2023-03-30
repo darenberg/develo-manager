@@ -9,6 +9,7 @@
                 <div class="text-center">
                   <h2>Update your project </h2>
                 </div>
+                      <div class="task_back_btn"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
                   <%= simple_form_for(task, url: dot_task_path(task.dot, task), method: :patch) do |f| %>
                     <%= f.input :title %>
                     <%= f.input :content %>
