@@ -30,6 +30,9 @@
         <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "link" do %>
           <div class="title">Log out</div>
           <div class="bar"></div>
+      <div>
+      <%= @project.title%>
+      </div>
         <% end %>
       </div>
 
