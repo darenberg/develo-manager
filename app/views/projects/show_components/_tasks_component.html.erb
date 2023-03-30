@@ -1,72 +1,78 @@
 <div>
-  <% if @dot.present? %>
-    <div data-controller="new-task">
-      <div class="my-3">
-        <button data-action="click->new-task#toggleForm" class="btn btn-primary">Add task for this dot</button>
-      </div>
-      <div data-new-task-target="form" class="d-none">
-        <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
-          <%= f.input :title %>
-          <%= f.input :content %>
-          <%= f.input :photo, as: :file %>
-          <%= simple_fields_for :tags do |t| %>
-            <%= t.input :tags %>
-          <% end %>
-          <%= f.submit  %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-<h2><%= @project.title %></h2>
-<div class="d-flex justify-content-center pt-2">
-  <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
-    <div class="form-group mr-3">
-      <%= tf.label :tag_name, "Tag", class: "mr-2" %>
-      <%= tf.text_field :tag_name, class: "form-control-sm" %>
-    </div>
-    <%= tf.submit "Search", class: "btn", style: "background-color: #d96d00; color: #fff; border-radius: 20px;", data: {toggle: "tooltip"}, title: "Search" %>
-  <% end %>
-</div>
- <div id="scroll">
-    <% @tasks.each do |task| %>
-      <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
-        <div class="d-flex row">
-          <div class="d-flex col">
-            <div class="tasks_cards row" id="scroll_task_ind">
-              <% if task.done? %>
-                <div class="d-flex align-content-center align-items-center">
-                  <h3><%= task.title.capitalize %></h3>
-                  <i class="fa-solid fa-check ms-3" style="color: #ffa200;"></i>
-                </div>
-              <% else %>
-                <h3><%= task.title.capitalize %></h3>
-              <% end %>
-                <div class="col-8 h-100">
-                  <p>Description:  <%= task.content %> Lorem ipsum dolor sit amet consectetur adipisicing elit. In earum dolor rem veniam sint quaerat error dolores hic esse rerum aliquid saepe, quisquam, ipsum officiis labore quidem unde accusamus eaque.</p>
-                </div>
-                <div class="d-flex col-4 h-100">
-                  <p class="tags">
-                    Tags:
-                    <%= task.formatted_tags_with_hashtag %>
-                  </p>
-                </div>
-            </div>
+    <% if @dot.present? %>
+      <div data-controller="new-task" class="justify-content-center">
+        <div class="container row align-items-center">
+          <div class="col-12 my-3">
+            <div class="task_back_btn"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
+            <button data-action="click->new-task#toggleForm" class="form-btn mt-2 ml-4">Add task for this dot</button>
           </div>
         </div>
-      <% end %>
+          <body class="bg-gradient-primary">
+            <div class="container d-none" data-new-task-target="form">
+              <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-12 col-xl-10">
+                  <div class="card o-hidden border-0 my-5 orange-shadow">
+                    <div class="card-body p-0">
+                      <div class="row">
+                        <div class="p-5">
+                  <div>
+                    <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
+                      <%= f.input :title %>
+                      <%= f.input :content %>
+                      <%= f.input :photo, as: :file %>
+                      <%= simple_fields_for :tags do |t| %>
+                        <%= t.input :tags %>
+                      <% end %>
+                     <input class="form-btn mb-5" <%= f.submit  %>
+                    <% end %>
+                  </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </body>
+      </div>
+    <% end %>
+  <h5 class="mt-2"><%= @project.title %></h5>
+  <div class="d-flex justify-content-center pt-2">
+    <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
+      <div class="form-group mr-3">
+        <%= tf.label :tag_name, "Tag", class: "mr-2" %>
+        <%= tf.text_field :tag_name, class: "form-control-sm" %>
+      </div>
+      <%= tf.submit "Search", class: "btn", style: "background-color: #d96d00; color: #fff; border-radius: 20px;", data: {toggle: "tooltip"}, title: "Search" %>
     <% end %>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div id="scroll">
+      <% @tasks.each do |task| %>
+        <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
+          <div class="d-flex row">
+            <div class="d-flex col">
+              <div class="tasks_cards row" id="scroll_task_ind">
+                <% if task.done? %>
+                  <div class="d-flex align-content-center align-items-center">
+                    <h3><%= task.title.capitalize %></h3>
+                    <i class="fa-solid fa-check ms-3" style="color: #ffa200;"></i>
+                  </div>
+                <% else %>
+                  <h3><%= task.title.capitalize %></h3>
+                <% end %>
+                  <div class="col-8 h-100">
+                    <p>Description:  <%= task.content %> Lorem ipsum dolor sit amet consectetur adipisicing elit. In earum dolor rem veniam sint quaerat error dolores hic esse rerum aliquid saepe, quisquam, ipsum officiis labore quidem unde accusamus eaque.</p>
+                  </div>
+                  <div class="d-flex col-4 h-100">
+                    <p class="tags">
+                      Tags:
+                      <%= task.formatted_tags_with_hashtag %>
+                    </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 </div>
