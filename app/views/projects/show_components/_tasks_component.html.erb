@@ -23,7 +23,7 @@
                       <%= simple_fields_for :tags do |t| %>
                         <%= t.input :tags %>
                       <% end %>
-                     <input class="form-btn mb-5" <%= f.submit  %>
+                     <%= f.submit "Add task for this dot", class: "form-btn" %>
                     <% end %>
                   </div>
                         </div>
@@ -42,7 +42,7 @@
         <%= tf.label :tag_name, "Tag", class: "mr-2" %>
         <%= tf.text_field :tag_name, class: "form-control-sm" %>
       </div>
-      <input class="form-btn justify-content-center" <%= tf.submit "Search", data: {toggle: "tooltip"}, title: "Search" %>
+       <%= tf.submit "Search", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
     <% end %>
   </div>
   <div id="scroll">
