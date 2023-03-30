@@ -133,6 +133,14 @@
   margin: 2px;
 }
 
+.floor-btn-minus:hover {
+  background: #5d2f00;
+  text-decoration: none;
+}
+.floor-btn-minus:active {
+  background: #5d2f00 !important;
+  text-decoration: none;
+}
 .border-bottom {
   border-bottom: 5px solid black;
 }
@@ -190,7 +198,7 @@
   color: #fff;
   text-transform: uppercase;
   font-size: 1rem;
-  background-color: #00d94c;
+  background-color: #d98600;
   letter-spacing: .15rem;
   transition: all .3s;
   position: relative;
@@ -270,11 +278,22 @@ input[type="submit"] {
   border-radius: 20px;
 }
 
-#new-dot h4 {
-  margin-top: 6px;
-  margin-right: 6px;
+
+.dot-btn {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: #d98600;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-#new-dot {
-  margin: 5px;
+.dot-btn:hover {
+  background-color: #5d2f00;
 }

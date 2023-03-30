@@ -1,3 +1,4 @@
+<div class="task_back_btn mt-5 ms-5"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
 <body class="bg-gradient-primary">
   <div class="container">
     <div class="row justify-content-center">
@@ -9,7 +10,6 @@
                 <div class="text-center">
                   <h2>Update your project </h2>
                 </div>
-                      <div class="task_back_btn"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
                   <%= simple_form_for(task, url: dot_task_path(task.dot, task), method: :patch) do |f| %>
                     <%= f.input :title %>
                     <%= f.input :content %>
@@ -17,7 +17,7 @@
                     <%= f.label :tags, "Tags (comma-separated)" %>
                     <%= f.text_field :tag_names, value: task.formatted_tags %>
                     <%= f.input :done, as: :boolean  %>
-                    <input class="form-btn" <%= f.submit  %>
+                    <%= f.submit "Update", class: "form-btn" %>
                   <% end %>
                 </div>
               </div>
