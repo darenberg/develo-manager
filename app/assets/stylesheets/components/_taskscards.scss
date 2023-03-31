@@ -41,6 +41,8 @@ margin-right: 15px;
   overflow-y: scroll;
   height: 80vh;
   padding: 50px;
+  padding-top: 46px;
+  margin-top: 14px;
 }
 
 #scroll::-webkit-scrollbar{
@@ -69,13 +71,20 @@ font-size: 45px;
 .tasks_tags h4{
 font-size: medium;
 color: rgb(61, 61, 61);
-font-weight: bolder;
+font-weight: bold;
+margin-top: 15px;
+}
+
+.tasks_tags h5{
+line-height: 2;
 }
 
 #scroll_task{
   overflow-y: scroll;
   height: 25vh;
   padding: 25px;
+  height: 500px;
+  margin-top: 40px;
 }
 
 #scroll_task::-webkit-scrollbar{
@@ -87,6 +96,15 @@ font-weight: bolder;
   color: black;
   // line-height: 1.4;
   margin-top: 3px;
+}
+
+.task {
+  height: 500px;
+
+}
+
+.task h4 {
+  color: grey;
 }
 
 .tasks_cards_ind {
@@ -107,8 +125,9 @@ font-weight: bolder;
   font-weight: bold;
   color: black;
   margin: 0;
-  padding-left: 5px ;
-  margin-top: 5px;
+  padding-left: 10px ;
+  margin-top: 20px;
+  vertical-align: text-top;
 }
 
 .tasks_cards_ind p {
@@ -124,6 +143,7 @@ font-weight: bolder;
   overflow-y: scroll;
   height: 15vh;
   padding: 5px;
+
 }
 
 #scroll_task_ind::-webkit-scrollbar{

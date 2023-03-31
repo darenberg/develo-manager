@@ -131,6 +131,7 @@
   text-decoration: none;
   border: none;
   margin: 2px;
+
 }
 
 .floor-btn-minus:hover {
@@ -189,6 +190,14 @@
       width: 100%;
     }
   }
+}
+
+.floor-btn-plus {
+  margin-top: 15px;
+}
+
+#plus {
+  margin-top: 15px;
 }
 
 .form-btn {
