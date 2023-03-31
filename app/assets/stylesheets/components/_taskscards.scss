@@ -137,18 +137,22 @@ font-weight: bolder;
   margin: 5px auto;
 }
 
-.trick-div {
-  position: absolute;
-  left: 669px;
-  top: calc(60px + 145px);
-
-  width: 500px;
-  height: 500px;
-  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
-}
 
 .form-position {
   position: absolute;
   left: 667px;
   top: 700px;
+}
+
+#parent {
+  position: relative;
+}
+
+.trick-div {
+  position: absolute;
+  left: 600px;
+  top: 125px;
+  width: 500px;
+  height: 500px;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
 }
