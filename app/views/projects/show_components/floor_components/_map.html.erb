@@ -7,7 +7,9 @@
         <div class="d-none" id="map-plan-<%= plan.stage %>">
           <% if plan.photo.attached? %>
             <div class="d-flex" id="new-dot">
-              <h4 class="mt-2 mr-2"><strong >Dot</strong></h4>
+              <div class="button-text-dot">
+                <h4><strong >Dot</strong></h4>
+              </div>
               <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
             </div>
             <div class="trick-div">

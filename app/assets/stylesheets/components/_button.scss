@@ -74,6 +74,7 @@
   border: none;
   margin: 2px;
   background: #5d2f00;
+  width: 44px;
 }
 
 .plan-btn-darker {
@@ -93,6 +94,7 @@
 .floor-btn:hover {
   background: #5d2f00;
   text-decoration: none;
+  width: 44px;
 }
 
 .plan-btn:active {
@@ -103,6 +105,7 @@
 .floor-btn:active {
   background: #5d2f00 !important;
   text-decoration: none;
+  width: 44px;
 }
 
 .floor-btn {
@@ -117,6 +120,7 @@
   text-decoration: none;
   border: none;
   margin: 2px;
+  width: 44px;
 }
 
 .floor-btn-minus {
@@ -126,12 +130,14 @@
   font-family: Arial;
   color: #ffffff;
   font-size: 20px;
+  font-weight: bold;
   background: #d98600;
   padding: 5px 16px 5px 16px;
   text-decoration: none;
   border: none;
   margin: 2px;
-
+  width: 40px;
+  margin-bottom: 15px;
 }
 
 .floor-btn-minus:hover {
@@ -183,6 +189,7 @@
     transition: all .3s;
     border-radius: 10rem;
     z-index: -1;
+
   }
 
   &:hover {
@@ -194,10 +201,23 @@
 
 .floor-btn-plus {
   margin-top: 15px;
+
 }
 
 #plus {
-  margin-top: 15px;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: #d98600;
+  color: #fff;
+  border: none;
+  font-size: 25px;
+  font-weight: light;
+  text-align: center;
+  line-height: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 30px;
 }
 
 .form-btn {
@@ -295,14 +315,27 @@ input[type="submit"] {
   background-color: #d98600;
   color: #fff;
   border: none;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 25px;
+  font-weight: light;
   text-align: center;
   line-height: 25px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin-top: 5px;
+  margin-left: 15px;
 }
 
 .dot-btn:hover {
   background-color: #5d2f00;
+}
+
+.button-text-dot {
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.button-text-floor {
+  margin-top: 2px;
+  margin-right: 15px;
+  margin-bottom: 10px;
 }
