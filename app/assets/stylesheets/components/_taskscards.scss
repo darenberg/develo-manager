@@ -1,3 +1,12 @@
+body {
+  background-color: aliceblue;
+}
+
+.form-inline {
+  align-self: right;
+}
+
+
 .tasks_cards {
   overflow: hidden;
   height: 120px;
@@ -15,19 +24,19 @@
 .tasks_cards h3 {
   font-size: 18px;
   font-weight: bold;
-  color: black;
+  color: darkslategrey;
   margin: 0;
-  padding-left: 5px ;
+  margin-bottom: 10px;
   margin-top: 5px;
-  width: 65%;
+  margin-right: 0;
 }
 
 .tasks_cards p {
   font-size: 14px;
-  color: black;
   line-height: normal;
   margin-bottom: 0;
   margin-top: 3px;
+  color: darkslategray;
 }
 
 
@@ -35,14 +44,17 @@
 font-size: 14px;
 font-weight: bold;
 margin-right: 15px;
+color: grey;
+width: 50px;
 }
 
 #scroll{
   overflow-y: scroll;
   height: 95vh;
-  padding: 50px;
-  padding-top: 46px;
-  margin-top: 14px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  margin-top: 58px;
   margin-bottom: 15px;
 }
 
@@ -71,13 +83,14 @@ font-size: 45px;
 
 .tasks_tags h4{
 font-size: medium;
-color: rgb(61, 61, 61);
+color: grey;
 font-weight: bold;
 margin-top: 15px;
 }
 
 .tasks_tags h5{
 line-height: 2;
+color: grey;
 }
 
 #scroll_task{
@@ -140,10 +153,15 @@ line-height: 2;
   margin-top: 5px;
 }
 
+#title-description {
+  margin-right: 5px;
+}
+
 #scroll_task_ind{
   overflow-y: scroll;
-  height: 15vh;
+  height: 120px;
   padding: 5px;
+  width: 375px;
 
 }
 
@@ -176,4 +194,8 @@ line-height: 2;
   width: 500px;
   height: 500px;
   box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+}
+
+.buffer-div {
+  height: 100px;
 }
