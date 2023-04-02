@@ -5,7 +5,8 @@
       <div class="task_edit_btn"><%= link_to  '<i class="fa-solid fa-pencil fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, edit: true, task_id: task.id) %>
     </div>
   </div>
-  <div class="tasks_cards_ind indivudual_task_view" id="scroll_task">
+  <div class="tasks_cards" id="scroll_task">
+
     <div class="task">
       <h2><%= task.title %></h2>
       <div class="tasks_tags">
