@@ -15,17 +15,17 @@
                     <div class="card-body p-0">
                       <div class="row">
                         <div class="p-5">
-                  <div>
-                    <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
-                      <%= f.input :title %>
-                      <%= f.input :content %>
-                      <%= f.input :photo, as: :file %>
-                      <%= simple_fields_for :tags do |t| %>
-                        <%= t.input :tags %>
-                      <% end %>
-                     <%= f.submit "Add task for this dot", class: "form-btn" %>
-                    <% end %>
-                  </div>
+                          <div>
+                            <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
+                              <%= f.input :title %>
+                              <%= f.input :content %>
+                              <%= f.input :photo, as: :file %>
+                              <%= simple_fields_for :tags do |t| %>
+                                <%= t.input :tags %>
+                              <% end %>
+                            <%= f.submit "Add task for this dot", class: "form-btn" %>
+                            <% end %>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -36,7 +36,7 @@
           </body>
       </div>
     <% end %>
-  <div class="d-flex justify-content-center pt-2 mt-2">
+  <div class="d-flex pt-2 mt-2" id="search-div">
     <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
       <div class="form-group mr-3">
         <%= tf.label :tag_name, "Tag", class: "mr-2" %>
@@ -45,29 +45,34 @@
        <%= tf.submit "Search", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
     <% end %>
   </div>
+
   <div id="scroll">
       <% @tasks.each do |task| %>
         <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
           <div class="d-flex row">
             <div class="d-flex col">
               <div class="tasks_cards row" id="scroll_task_ind">
-                <% if task.done? %>
-                  <div class="d-flex align-content-center align-items-center">
-                    <h3><%= task.title.capitalize %></h3>
-                    <i class="fa-solid fa-check ms-3" style="color: #ffa200;"></i>
+                <div class="d-flex justify-content-between">
+                  <div  id="title-description">
+                    <% if task.done? %>
+                      <div class="d-flex align-content-center align-items-center">
+                        <h3><%= task.title.capitalize %></h3>
+                        <i class="fa-solid fa-check ms-3" style="color: #ffa200;"></i>
+                      </div>
+                    <% else %>
+                      <h3><%= task.title.capitalize %></h3>
+                    <% end %>
+
+                    <div class="h-100">
+                      <p><%= task.content %></p>
+                    </div>
                   </div>
-                <% else %>
-                  <h3><%= task.title.capitalize %></h3>
-                <% end %>
-                  <div class="col-8 h-100">
-                    <p>Description:  <%= task.content %></p>
-                  </div>
-                  <div class="d-flex col-4 h-100">
+                  <div class="d-flex">
                     <p class="tags">
-                      Tags:
                       <%= task.formatted_tags_with_hashtag %>
                     </p>
                   </div>
+                </div>
               </div>
             </div>
           </div>

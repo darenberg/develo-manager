@@ -1,19 +1,22 @@
 
 <div class="d-flex flex-column">
-  <div class="d-flex">
-    <%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: @project.floor_numbers.last + 1} }, class:"floor-btn" %>
-    <%= button_to "-", project_floors_path(@project), method: :destroy, params: { floor: { number: @project.floor_numbers.first - 1} }, class:"floor-btn-minus" %>
-  </div>
-  <div>
-    <h4><strong>Floor</strong></h4>
+  <div class="button-text-floor">
+    <h4 class="mt-2"><strong>Floor</strong></h4>
   </div>
 </div>
 
-<% @project.floor_numbers.each do |floor| %>
-  <div class="d-flex">
-    <button type="button" data-maps-target="floorButton" class="floor-btn" data-action="click->maps#changeFloor" id="floor<%= floor %>"> <%= floor %> </button>
-    <%= link_to floor_path(@project.floors.find_by(number: floor)), class: "delete-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this floor?" } do %>
-      <i class="fas fa-trash-alt  text-danger"></i>
-    <% end %>
+<div class="mt-2">
+  <% @project.floor_numbers.each do |floor| %>
+    <div class="d-flex">
+      <button type="button" data-maps-target="floorButton" class="floor-btn" data-action="click->maps#changeFloor" id="floor<%= floor %>"> <%= floor %> </button>
+      <%= link_to floor_path(@project.floors.find_by(number: floor)), class: "delete-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this floor?" } do %>
+        <i class="fas fa-trash-alt  text-danger"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+  <div class="border-bottom">
+    <%= button_to "+", project_floors_path(@project), method: :post, params: { floor: { number: @project.floor_numbers.last + 1} }, class:"floor-btn", id:"plus" %>
+    <%= button_to "-", project_floors_path(@project), method: :destroy, params: { floor: { number: @project.floor_numbers.first - 1} }, class:"floor-btn-minus" %>
   </div>
-<% end %>
