@@ -62,11 +62,23 @@
                         <i class="fa-solid fa-check ms-3" style="color: #ffa200;"></i>
                       </div>
                     <% else %>
-                      <h3><%= task.title.capitalize %></h3>
+                    <div class="border-bottom">
+                      <h3>
+                      <%=task.dot.id %> -
+                      <%= task.title.capitalize %>
+                      </h3>
+                    </div>
                     <% end %>
-
                     <div class="h-100">
-                      <p><%= task.content %></p>
+                      <div class="m-2" style="color: darkslategrey;">
+                        <h6>
+                          Floor: <%=task.dot.plan.floor.number %>
+                          [ <%=task.dot.plan.stage %> ]
+                        </h6>
+                      </div>
+                      <p>
+                        <%=task.content %>
+                      </p>
                     </div>
                   </div>
                   <div class="d-flex">
