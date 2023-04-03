@@ -7,16 +7,17 @@
   width: 100%;
   object-fit: cover;
 }
-.draggable {
-  height: 35px;
-  line-height: 35px;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  margin: 0 5px;
+
+
+#floor-master {
+  justify-content: space-between;
+  padding-bottom: 10px;
+  padding-right: 33px;
 }
 
+.plan-text {
+  margin-top: 10px;
+}
 
 .container_plan_stages {
 max-height: 60px;
