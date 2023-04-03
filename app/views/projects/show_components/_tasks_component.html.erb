@@ -1,11 +1,11 @@
 <div>
-  <div class="d-flex pt-2 mt-2" id="search-div">
+  <div class="d-flex pt-1 mt-2" id="search-div">
     <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
       <div class="form-group mr-3">
         <%= tf.label :tag_name, "Tag", class: "mr-2" %>
         <%= tf.text_field :tag_name, class: "form-control-sm" %>
       </div>
-       <%= tf.submit "Search", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
+       <%= tf.submit "Search tags", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
     <% end %>
   </div>
     <% if @dot.present? %>
@@ -73,7 +73,7 @@
                       <div class="m-2" style="color: darkslategrey;">
                         <h6>
                           Floor: <%=task.dot.plan.floor.number %>
-                          [ <%=task.dot.plan.stage %> ]
+                          - <%=task.dot.plan.stage %> Floor Plan
                         </h6>
                       </div>
                       <p>
