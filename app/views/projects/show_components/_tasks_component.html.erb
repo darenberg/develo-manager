@@ -1,9 +1,20 @@
 <div>
+  <div class="d-flex pt-2 mt-2" id="search-div">
+    <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
+      <div class="form-group mr-3">
+        <%= tf.label :tag_name, "Tag", class: "mr-2" %>
+        <%= tf.text_field :tag_name, class: "form-control-sm" %>
+      </div>
+       <%= tf.submit "Search", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
+    <% end %>
+  </div>
     <% if @dot.present? %>
       <div data-controller="new-task" class="justify-content-center">
         <div class=" container row align-items-center">
-          <div class="d-flex align-items-center my-3">
-            <div class="task_back_btn mt-2 ms-4"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
+          <div class="d-flex align-items-center my-3" id="add_task">
+            <div class="task_back_btn mt-2 ms-4">
+              <%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %>
+            </div>
             <button data-action="click->new-task#toggleForm" class="form-btn mt-2 ms-3">Add task for this dot</button>
           </div>
         </div>
@@ -36,15 +47,6 @@
           </body>
       </div>
     <% end %>
-  <div class="d-flex pt-2 mt-2" id="search-div">
-    <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
-      <div class="form-group mr-3">
-        <%= tf.label :tag_name, "Tag", class: "mr-2" %>
-        <%= tf.text_field :tag_name, class: "form-control-sm" %>
-      </div>
-       <%= tf.submit "Search", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
-    <% end %>
-  </div>
 
   <div id="scroll">
       <% @tasks.each do |task| %>
