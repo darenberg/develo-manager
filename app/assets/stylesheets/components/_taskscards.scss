@@ -1,10 +1,23 @@
 body {
-  background-color: aliceblue;
+  background-color: darkslategray;
+  //background-color: aliceblue;
+
   color: darkslategrey;
 }
 
-h1 h2 h3 {
-  font-family: Arial, roboto, sans-serif;
+.container{
+  background-color: darkslategray;
+}
+
+#plans-div {
+  background-color: antiquewhite;
+  border-left: 5px dotted darkslategray;
+  border-bottom: 5px dotted darkslategray;
+  border-right: 5px dotted darkslategray;
+  padding-left: 24px;
+  //padding-right: 24px;
+
+  height: 120vh;
 }
 
 
@@ -61,7 +74,7 @@ width: 50px;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
-  margin-top: 58px;
+  margin-top: 66px;
   margin-bottom: 15px;
 }
 
@@ -91,6 +104,7 @@ margin-top: -23px;
 
 .filler {
   height: 50px;
+
 }
 
 .tasks_tags h4{
@@ -203,8 +217,9 @@ font-size: 18px;
 
 .form-position {
   position: absolute;
-  left: 600px;
+  left: 610px;
   top: 630px;
+  color: antiquewhite;
 }
 
 #parent {
@@ -213,11 +228,10 @@ font-size: 18px;
 
 .trick-div {
   position: absolute;
-  left: 600px;
-  top: 125px;
+  left: 610px;
+  top: 130px;
   width: 500px;
   height: 500px;
-  box-shadow: 0 10px 10px rgba(0,0,0,0.2);
 }
 
 .buffer-div {
