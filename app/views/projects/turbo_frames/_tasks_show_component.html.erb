@@ -11,12 +11,16 @@
 
     <div class="task">
       <h2><%= task.title %></h2>
-      <div class="tasks_tags">
+      <div class="tasks_tags border-bottom">
         <h4><%= task.formatted_tags_with_hashtag %></h4>
       </div>
       <div class="task_content">
         <h5><%= task.content %></h5>
       </div>
+      <div class="task_content">
+       <h5><%task.id%></h5>
+      </div>
+
     </div>
   </div>
 </.div>
