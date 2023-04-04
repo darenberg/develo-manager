@@ -75,10 +75,16 @@ class ProjectsController < ApplicationController
     elsif params[:dot_id].present?
       @dot = Dot.find(params[:dot_id])
       @tasks = @dot.tasks
+      @recommendation = gpt3_service.content_recommendation(@project.tasks)
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/show_components/tasks_component")
     else
       render :show, status: :ok, location: @project
     end
+  end
+
+  def gpt3_service
+    client = OpenAI::Client.new
+    @gpt3_service ||= Gpt3Service.new(client)
   end
 
   def show_components
