@@ -10,17 +10,66 @@
   <div class="tasks_cards" id="scroll_task">
 
     <div class="task">
-      <h2><%= task.title %></h2>
+      <div class="task_title d-flex justify-content-between align-items-center">
+        <h2><%= task.title %></h2>
+        <div class="task_status d-flex align-items-center">
+          <% if task.done? %>
+            <span class="badge rounded-pill text-bg-success text-white me-1">Done</span>
+            <i class="fa-solid fa-check-circle fs-5" style="color: #00b894;"></i>
+          <% else %>
+            <span class="badge rounded-pill text-bg-warning text-white me-1">Pending</span>
+            <%= link_to "<i class='fa-solid fa-circle fs-5 mt-1' style='color: #ffa200;'></i>".html_safe, dot_task_path(task), data: {turbo_method: :patch} %>
+          <% end %>
+        </div>
+      </div>
       <div class="tasks_tags border-bottom">
         <h4><%= task.formatted_tags_with_hashtag %></h4>
       </div>
-      <div class="task_content">
-        <h5><%= task.content %></h5>
+      <div class="task_content d-flex justify-content-between mt-4">
+        <div class="me-3">
+          <% if task.photo.attached? %>
+            <%= cl_image_tag task.photo.key, class: "task_photo", height: 200, width: 200, crop: :fill %>
+          <% else %>
+            <%= form_with model: task, url: dot_task_path(task), method: :patch, local: true do |f| %>
+              <%= f.file_field :photo, class: "form-control" %>
+              <%= f.submit "Add a photo", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <h6><%= task.content %></h6>
+          <%= form_with model: UserTask.new, url: task_user_tasks_path(task), method: :post, local: true do |f| %>
+            <%= f.hidden_field :task_id, value: task.id %>
+            <%= f.select :user_id, User.all.map { |user| [user.email, user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
+            <%= f.submit "Add to my tasks", class: "btn-user-tasks" %>
+          <% end %>
+        </div>
       </div>
-      <div class="task_content">
-       <h5><%task.id%></h5>
+      <div>
+        <h3>Collaborators:</h3>
+        <% if task.user_tasks.empty? %>
+          <p>No collaborators yet</p>
+        <% else %>
+          <table>
+            <thead>
+              <tr>
+                <th>Users</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% task.user_tasks.each do |user_task| %>
+                <tr>
+                  <td><%= user_task.user.email %></td>
+                  <td>
+                    <%= button_to "Remove", user_task_path(user_task), method: :delete, data: { confirm: "Are you sure?" } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
       </div>
-
     </div>
   </div>
-</.div>
+</div>

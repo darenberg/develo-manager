@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    binding.pry
     @task = Task.find(params[:id])
     form_tags = params[:task][:tag_names]
     create_tags(form_tags)
