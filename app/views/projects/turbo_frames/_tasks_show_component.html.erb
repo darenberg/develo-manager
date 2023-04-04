@@ -30,8 +30,8 @@
           <% if task.photo.attached? %>
             <%= cl_image_tag task.photo.key, class: "task_photo", height: 200, width: 200, crop: :fill %>
           <% else %>
-            <%= form_with model: task, url: dot_task_path(task), method: :patch, local: true do |f| %>
-              <%= f.file_field :photo, class: "form-control" %>
+            <%= simple_form_for([task.dot, task], method: :patch, local: true) do |f| %>
+              <%= f.input :photo, as: :file, label: false, input_html: { class: "form-control" } %>
               <%= f.submit "Add a photo", class: "btn btn-primary" %>
             <% end %>
           <% end %>
@@ -41,7 +41,7 @@
           <%= form_with model: UserTask.new, url: task_user_tasks_path(task), method: :post, local: true do |f| %>
             <%= f.hidden_field :task_id, value: task.id %>
             <%= f.select :user_id, User.all.map { |user| [user.email, user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
-            <%= f.submit "Add to my tasks", class: "btn-user-tasks" %>
+            <%= f.submit "Add User", class: "btn-user-tasks" %>
           <% end %>
         </div>
       </div>

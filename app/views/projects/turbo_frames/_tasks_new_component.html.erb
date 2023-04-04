@@ -10,7 +10,7 @@
                 <div class="text-center">
                   <h2>New task</h2>
                 </div>
-                  <%= simple_form_for([@project.floors.first.plans.first.dots.first, Task.new], method: :post) do |f| %>
+                  <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
                     <%= f.input :title %>
                     <%= f.input :content %>
                     <%= f.input :user_ids, as: :select, collection: User.all, label: "Assign to User", input_html: { multiple: true } %>
