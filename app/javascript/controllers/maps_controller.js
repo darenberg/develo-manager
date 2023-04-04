@@ -16,6 +16,14 @@ export default class extends Controller {
     const planExisting = floor0.querySelector("#map-plan-Existing");
     sessionStorage.setItem("mapPlan", "plan-Existing");
     planExisting.classList.remove("d-none");
+
+    const defaultFloor = document.querySelector("#floor0");
+    defaultFloor.classList.remove("floor-btn");
+    defaultFloor.classList.add("orange-btn-darker");
+
+    const defaultPlan = document.querySelector("#plan-Existing");
+    defaultPlan.classList.remove("plan-btn-stages");
+    defaultPlan.classList.add("plan-btn-stages-darker");
   }
 
   displayDotTasks(e) {
