@@ -62,11 +62,12 @@ class ProjectsController < ApplicationController
   end
 
   def render_index
-
     if params[:edit].present? && params[:task_id].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_edit_component", locals: { task: Task.find(params[:task_id])})
     elsif params[:task_id].present?
-      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_show_component", locals: { task: Task.find(params[:task_id])})
+      @task = Task.find(params[:task_id])
+      add_recommendation_to_user_task if params[:recommendation].present?
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_show_component", locals: { task: @task})
     elsif params[:create].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component")
     elsif params[:tag_name].present?
@@ -75,11 +76,16 @@ class ProjectsController < ApplicationController
     elsif params[:dot_id].present?
       @dot = Dot.find(params[:dot_id])
       @tasks = @dot.tasks
-      @recommendation = gpt3_service.content_recommendation(@project.tasks)
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/show_components/tasks_component")
     else
       render :show, status: :ok, location: @project
     end
+  end
+
+  def add_recommendation_to_user_task
+    recommendation = gpt3_service.content_recommendation(@task)
+    user_task = current_user.user_task(@task)
+    user_task.update(recommendation: recommendation)
   end
 
   def gpt3_service

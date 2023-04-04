@@ -5,10 +5,11 @@ class Gpt3Service
     @client = client
   end
 
-  def content_recommendation(tasks)
-    tasks_text = tasks.map(&:content).join("\n")
+  def content_recommendation(task)
+    prompt = "You are an architectural exeprt, based on the following task description for an architectural project:\n#{task.content}\n\n
+    Give me some recommendations to approach this task,
+    Do not include numbers to separate each recommendation, instead, place an R: in front of each recommendation."
 
-    prompt = "Based on the following tasks for and architectural project:\n#{tasks_text}\n\nProvide content recommendations for a new task:"
 
     response = @client.chat(
       parameters: {
@@ -17,7 +18,6 @@ class Gpt3Service
         temperature: 0.7
         })
 
-    raise
     return response.dig("choices", 0, "message", "content")
   end
 end
