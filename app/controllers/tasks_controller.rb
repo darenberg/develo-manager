@@ -4,13 +4,14 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @dot = Dot.find(params[:dot_id])
     @task.dot = @dot
-    if @task.save!
+    if @task.save
       create_tags if params[:task][:tag_names].present?
       @project = @task.dot.plan.floor.project
       @tasks = @dot.tasks
       render "projects/show", status: :ok, location: @project
     else
-      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component", locals: { task: @task})
+      redirect_to project_path(@project)
+      flash[:alert] = "Something went wrong"
     end
   end
 
