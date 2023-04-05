@@ -98,7 +98,6 @@ class ProjectsController < ApplicationController
     @tasks = @project.tasks
     @plans = @project.plans
     @floors = @project.floors
-
   end
 
   def project_params
