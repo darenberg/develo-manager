@@ -1,0 +1,27 @@
+<div class="task_back_btn mt-5 ms-5"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 col-lg-12 col-xl-10">
+        <div class="card o-hidden border-0 my-5 orange-shadow">
+          <div class="card-body p-0 bg-white">
+            <div class="row">
+              <div class="p-5">
+                <%= simple_form_for(@project) do |f| %>
+                  <div class="form-inputs form-control-user">
+                    <%= f.input :title %>
+                    <%= f.simple_fields_for :project_users do |project_user_fields| %>
+                      <%= project_user_fields.input :user_email, label: "User Email" %>
+                    <% end %>
+                    <%= f.submit "Update Project", class: "form-btn mt-3" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
