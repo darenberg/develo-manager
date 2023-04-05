@@ -62,11 +62,12 @@ class ProjectsController < ApplicationController
   end
 
   def render_index
-
     if params[:edit].present? && params[:task_id].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_edit_component", locals: { task: Task.find(params[:task_id])})
     elsif params[:task_id].present?
-      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_show_component", locals: { task: Task.find(params[:task_id])})
+      @task = Task.find(params[:task_id])
+      add_recommendation_to_user_task if params[:recommendation].present?
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_show_component", locals: { task: @task})
     elsif params[:create].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component")
     elsif params[:tag_name].present?
@@ -81,12 +82,22 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def add_recommendation_to_user_task
+    recommendation = gpt3_service.content_recommendation(@task)
+    user_task = current_user.user_task(@task)
+    user_task.update(recommendation: recommendation)
+  end
+
+  def gpt3_service
+    client = OpenAI::Client.new
+    @gpt3_service ||= Gpt3Service.new(client)
+  end
+
   def show_components
     @dots = @project.dots
     @tasks = @project.tasks
     @plans = @project.plans
     @floors = @project.floors
-
   end
 
   def project_params

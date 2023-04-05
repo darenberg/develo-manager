@@ -8,19 +8,93 @@
   <div class="filler">
   </div>
   <div class="tasks_cards" id="scroll_task">
-
     <div class="task">
-      <h2><%= task.title %></h2>
+      <div class="task_title d-flex justify-content-between align-items-center">
+        <h2><%= task.title %></h2>
+        <div class="task_status d-flex align-items-center">
+          <% if task.done? %>
+            <span class="badge rounded-pill text-bg-success text-white me-1">Done</span>
+            <i class="fa-solid fa-check-circle fs-5" style="color: #00b894;"></i>
+          <% else %>
+            <span class="badge rounded-pill text-bg-warning text-white me-1">Pending</span>
+            <i class="fa-solid fa-person-digging" style="color: #ffa200;"></i>
+          <% end %>
+        </div>
+      </div>
       <div class="tasks_tags border-bottom">
         <h4><%= task.formatted_tags_with_hashtag %></h4>
       </div>
-      <div class="task_content">
-        <h5><%= task.content %></h5>
+      <div class="task_content d-flex justify-content-between mt-4">
+        <div class="me-3">
+          <% if task.photo.attached? %>
+            <%= cl_image_tag task.photo.key, class: "task_photo", height: 200, width: 200, crop: :fill %>
+          <% else %>
+            <%= simple_form_for([task.dot, task], method: :patch, local: true) do |f| %>
+              <%= f.input :photo, as: :file, label: false, input_html: { class: "form-control" } %>
+              <%= f.submit "Add a photo", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <h6><%= task.content %></h6>
+          <%= form_with model: UserTask.new, url: task_user_tasks_path(task), method: :post, local: true do |f| %>
+            <%= f.hidden_field :task_id, value: task.id %>
+            <%= f.select :user_id, User.all.map { |user| [user.email, user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
+            <%= f.submit "Add User", class: "btn-user-tasks" %>
+          <% end %>
+        </div>
       </div>
-      <div class="task_content">
-       <h5><%task.id%></h5>
+      <div class="d-flex justify-content-between mt-4">
+        <div class="me-2">
+          <h3>Collaborators:</h3>
+          <% if task.user_tasks.empty? %>
+            <p>No collaborators yet</p>
+          <% else %>
+            <table>
+              <thead>
+                <tr>
+                  <th>Users</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% task.user_tasks.each do |user_task| %>
+                  <tr>
+                    <td><%= user_task.user.email %></td>
+                    <td>
+                      <%= button_to "Remove", user_task_path(user_task), method: :delete, data: { confirm: "Are you sure?" } %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+        <div data-controller="spinner-recommendation">
+          <% if current_user.belongs_to_task?(task) && !current_user.user_task(task)&.recommendation.present? %>
+            <h3>Your AI Recommendation:</h3>
+            <p><%= link_to "Get Recommendation", project_path(@project, task_id: task.id, recommendation: true), class: "btn btn-primary", data: { action: "click->spinner-recommendation#showSpinner", "spinner-recommendation-target": "button" } %></p>
+          <% end %>
+          <button class="btn btn-primary d-none" type="button" disabled data-spinner-recommendation-target="spinner">
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
       </div>
-
     </div>
   </div>
-</.div>
+</div>
+
+
+<% if current_user.user_task(task)&.recommendation.present? %>
+  <div class="recommendation-card">
+    <div id="scroll_task_recommendation">
+      <h5>Your AI Recommendation:</h5>
+      <ul>
+        <% current_user.user_task(task).recommendation.split('R:').drop(1).each do |recommendation| %>
+          <li><%= recommendation %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

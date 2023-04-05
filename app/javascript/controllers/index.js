@@ -19,5 +19,8 @@ application.register("new-task", NewTaskController)
 import PlansController from "./plans_controller"
 application.register("plans", PlansController)
 
+import SpinnerRecommendationController from "./spinner_recommendation_controller"
+application.register("spinner-recommendation", SpinnerRecommendationController)
+
 import TaskFilterController from "./task_filter_controller"
 application.register("task-filter", TaskFilterController)

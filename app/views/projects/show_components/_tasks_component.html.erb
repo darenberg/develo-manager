@@ -32,7 +32,8 @@
                               <%= f.input :content %>
                               <%= f.input :photo, as: :file %>
                               <%= simple_fields_for :tags do |t| %>
-                                <%= t.input :tags %>
+                                <%= f.label :tag_names, "Tags (comma-separated) Ex: Electric, Plumbing" %>
+                                <%= t.input :tag_names, label: false %>
                               <% end %>
                             <%= f.submit "Add task for this dot", class: "form-btn" %>
                             <% end %>
@@ -49,7 +50,7 @@
     <% end %>
 
   <div id="scroll">
-      <% @tasks.each do |task| %>
+      <% @tasks.sorted_tasks_by_done.each do |task| %>
         <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
           <div class="d-flex row">
             <div class="d-flex col">
@@ -57,16 +58,19 @@
                 <div class="d-flex justify-content-between">
                   <div  id="title-description">
                     <% if task.done? %>
-                      <div class="d-flex align-content-center align-items-center">
-                        <h3><%= task.title.capitalize %></h3>
-                        <i class="fa-solid fa-check ms-3" style="color: #ffa200;"></i>
+                      <div class="d-flex align-items-center border-bottom">
+                        <h3 class="me-1 mt-2"><%= task.title.capitalize %></h3>
+                        <span class="badge rounded-pill text-bg-success text-white me-1">Done</span>
+                        <i class="fa-solid fa-check-circle fs-5" style="color: #00b894;"></i>
                       </div>
                     <% else %>
-                    <div class="border-bottom">
-                      <h3>
+                    <div class="d-flex align-items-center border-bottom">
+                      <h3 class="me-1 mt-2">
                       <%=task.dot.id %> -
                       <%= task.title.capitalize %>
                       </h3>
+                      <span class="badge rounded-pill text-bg-warning text-white me-1">Pending</span>
+                      <i class="fa-solid fa-person-digging" style="color: #ffa200;"></i>
                     </div>
                     <% end %>
                     <div class="h-100">
