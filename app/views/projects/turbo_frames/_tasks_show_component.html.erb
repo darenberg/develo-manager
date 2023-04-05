@@ -39,7 +39,7 @@
           <h6><%= task.content %></h6>
           <%= form_with model: UserTask.new, url: task_user_tasks_path(task), method: :post, local: true do |f| %>
             <%= f.hidden_field :task_id, value: task.id %>
-            <%= f.select :user_id, User.all.map { |user| [user.email, user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
+            <%= f.select :user_id, @project.project_users.map { |project_user| [project_user.user.email, project_user.user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
             <%= f.submit "Add User", class: "btn-user-tasks" %>
           <% end %>
         </div>

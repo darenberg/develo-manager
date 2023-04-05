@@ -10,12 +10,39 @@
                 <%= simple_form_for(@project) do |f| %>
                   <div class="form-inputs form-control-user">
                     <%= f.input :title %>
-                    <%= f.simple_fields_for :project_users do |project_user_fields| %>
-                      <%= project_user_fields.input :user_email, label: "User Email" %>
-                    <% end %>
                     <%= f.submit "Update Project", class: "form-btn mt-3" %>
                   </div>
                 <% end %>
+                <%= form_with model: ProjectUser.new, url: project_project_users_path(@project), method: :post, local: true do |f| %>
+                  <%= f.hidden_field :project_id, value: @project.id %>
+                  <%= f.select :user_id, User.all.map { |user| [user.email, user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
+                  <%= f.submit "Add User", class: "btn-user-tasks" %>
+                <% end %>
+                <div class="d-flex justify-content-between mt-4">
+                <div class="me-2">
+                  <h3>Project Collaborators:</h3>
+                  <% if @project.project_users.empty? %>
+                    <p>No collaborators yet</p>
+                  <% else %>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Users</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @project.project_users.each do |project_user| %>
+                          <tr>
+                            <td><%= project_user.user.email %></td>
+                            <td>
+                              <%= button_to "Remove", project_user_path(project_user), method: :delete, data: { confirm: "Are you sure?" } %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  <% end %>
                 </div>
               </div>
             </div>

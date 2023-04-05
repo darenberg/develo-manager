@@ -8,6 +8,7 @@
       <% if @project %>
         <div>
         <p class="fs-5 me-5 mt-3"><%= @project.title%></p>
+        <%= link_to "<i class='fa-solid fa-people-group'></i>".html_safe, project_path(@project, edit_project: true) %>
         </div>
       <% end %>
       <div class="dropdown bg-white">
