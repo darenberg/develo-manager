@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     @dot = Dot.find(params[:dot_id])
     @task.dot = @dot
     if @task.save
-      create_tags if params[:task][:tag_names].present?
+      create_tags(params[:tags][:tag_names]) if params[:tags][:tag_names].present?
       @project = @task.dot.plan.floor.project
       @tasks = @dot.tasks
       render "projects/show", status: :ok, location: @project
@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.update(task_params)
       @project = @task.dot.plan.floor.project
-      create_tags if params[:task][:tag_names].present?
+      create_tags(params[:task][:tag_names]) if params[:task][:tag_names].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_show_component", locals: { task: @task })
     else
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_edit_component", locals: { task: @task})
@@ -34,8 +34,7 @@ class TasksController < ApplicationController
 
   private
 
-  def create_tags
-    tags = params[:task][:tag_names]
+  def create_tags(tags)
     @task.tags.destroy_all
     split_tags = tags.split(", ")
     split_tags.each do |tag|

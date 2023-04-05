@@ -10,15 +10,14 @@
                 <div class="text-center">
                   <h2>New task</h2>
                 </div>
-                  <%= simple_form_for([@dot, Task.new], method: :post) do |f| %>
+                  <%= simple_form_for(task, url: dot_task_path(@dot, task), method: :post) do |f| %>
                     <%= f.input :title %>
                     <%= f.input :content %>
-                    <%= f.input :user_ids, as: :select, collection: User.all, label: "Assign to User", input_html: { multiple: true } %>
                     <%= f.input :photo, as: :file %>
-                    <%= simple_fields_for :tags do |t| %>
-                      <%= t.input :tags %>
-                    <% end %>
-                    <%input class="form-btn" <%= f.submit  %>
+                    <%= f.label :tags, "Tags (comma-separated)" %>
+                    <%= f.text_field :tag_names, value: task.formatted_tags %>
+                    <%= f.input :done, as: :boolean  %>
+                    <%= f.submit "Create Task", class: "form-btn" %>
                   <% end %>
                 </div>
               </div>

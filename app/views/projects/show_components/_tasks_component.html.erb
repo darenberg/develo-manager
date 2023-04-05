@@ -32,7 +32,8 @@
                               <%= f.input :content %>
                               <%= f.input :photo, as: :file %>
                               <%= simple_fields_for :tags do |t| %>
-                                <%= t.input :tags %>
+                                <%= f.label :tag_names, "Tags (comma-separated) Ex: Electric, Plumbing" %>
+                                <%= t.input :tag_names, label: false %>
                               <% end %>
                             <%= f.submit "Add task for this dot", class: "form-btn" %>
                             <% end %>
