@@ -254,8 +254,9 @@ font-size: 18px;
 .form-position {
   position: absolute;
   left: 610px;
-  top: 620px;
+  top: 600px;
   color: antiquewhite;
+  font-size: 10px;
 }
 
 #parent {
@@ -272,4 +273,31 @@ font-size: 18px;
 
 .buffer-div {
   height: 50px;
+}
+
+
+.form-control {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 1.75rem;
+  font-weight: bolder;
+}
+
+.btn-user-tasks {
+  display: inline-block !important;
+  padding: .75rem 1.25rem !important;
+  border-radius: 10rem !important;
+  color: #fff !important;
+  text-transform: uppercase !important;
+  font-size: 1rem !important;
+  background-color: #d96d00 !important;
+  letter-spacing: .15rem !important;
+  transition: all .3s !important;
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  border: none !important;
 }

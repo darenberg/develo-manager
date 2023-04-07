@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :floors, only: [:create, :update]
+    resources :project_users, only: [:create, :update]
   end
   resources :floors, only: [:destroy] do
     resources :plans, only: [:create, :update]
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   resources :dots, only: :destroy
   resources :tasks, only: :destroy
   resources :user_tasks, only: :destroy
+  resources :project_users, only: :destroy
   resources :floors, only: :destroy
   resources :plans, only: :destroy
 end

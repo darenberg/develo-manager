@@ -17,11 +17,6 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owner = current_user
-    # unless params[:project_users].empty?
-    #   params[:project_users].each do |user_id|
-    #     ProjectUser.new(user_id: user_id, project: @project)
-    #   end
-    # end
     floor = Floor.create(number: 0, project: @project)
     create_plans(floor)
     if @project.save!
@@ -35,14 +30,11 @@ class ProjectsController < ApplicationController
   end
 
   def update
-
-    @project.update(project_params)
-    unless params[:project_users].empty?
-      params[:project_users].each do |user_id|
-        ProjectUser.new(user_id: user_id, project: @project)
-      end
+    if @project.update(project_params)
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/edit_project")
+    else
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/edit_project")
     end
-    redirect_to project_path(@project), notice: 'project was successfully updated.'
   end
 
   def destroy
@@ -70,8 +62,11 @@ class ProjectsController < ApplicationController
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_show_component", locals: { task: @task})
     elsif params[:create].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_new_component")
+    elsif params[:edit_project].present?
+      render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/edit_project")
     elsif params[:tag_name].present?
-      @tasks = @project.tasks.includes(:tags).where(tags: {tag_name: params[:tag_name]}).uniq
+      @tasks = @project.tasks.includes(:tags).where(tags: {tag_name: params[:tag_name]})
+      @tags = true
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/show_components/tasks_component")
     elsif params[:dot_id].present?
       @dot = Dot.find(params[:dot_id])

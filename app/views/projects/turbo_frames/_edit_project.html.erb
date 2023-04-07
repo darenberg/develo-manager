@@ -1,0 +1,58 @@
+<div class="task_back_btn mt-5 ms-5"><%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %></div>
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 col-lg-12 col-xl-10">
+        <div class="card o-hidden border-0 my-5 orange-shadow">
+          <div class="card-body p-0 bg-white">
+            <div class="row">
+              <div class="p-5">
+                <% if @project %>
+                  <%= simple_form_for(@project) do |f| %>
+                    <div class="form-inputs form-control-user">
+                      <%= f.input :title %>
+                      <%= f.submit "Update Project", class: "btn-user-tasks mt-3" %>
+                    </div>
+                  <% end %>
+                  <%= form_with model: ProjectUser.new, url: project_project_users_path(@project), method: :post, local: true do |f| %>
+                    <%= f.hidden_field :project_id, value: @project.id %>
+                    <%= f.select :user_id, User.all.map { |user| [user.email, user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
+                    <%= f.submit "Add User", class: "btn-user-tasks" %>
+                  <% end %>
+                  <div class="d-flex justify-content-between mt-4">
+                  <div class="me-2">
+                    <h3>Project Collaborators:</h3>
+                    <% if @project.project_users.empty? %>
+                      <p>No collaborators yet</p>
+                    <% else %>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Users</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @project.project_users.each do |project_user| %>
+                            <tr>
+                              <td><%= project_user.user.email %></td>
+                              <td>
+                                <%= link_to project_user_path(project_user), class: "delete-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this user?" } do %>
+                                  <i class="fas fa-trash-alt  text-danger"></i>
+                                <% end %>
+                              </td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -7,6 +7,7 @@ class Project < ApplicationRecord
   has_many :tasks, through: :dots
 
   has_many :tags, through: :tasks
+  has_many :project_users, dependent: :destroy
 
 
   def floor_numbers
