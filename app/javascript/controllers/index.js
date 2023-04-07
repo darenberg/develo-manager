@@ -7,8 +7,8 @@ import { application } from "./application"
 import DotsController from "./dots_controller"
 application.register("dots", DotsController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import ReloadController from "./reload_controller"
+application.register("reload", ReloadController)
 
 import MapsController from "./maps_controller"
 application.register("maps", MapsController)

@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owner = current_user
+    ProjectUser.create(user: @project.owner, project: @project)
     floor = Floor.create(number: 0, project: @project)
     create_plans(floor)
     if @project.save!
