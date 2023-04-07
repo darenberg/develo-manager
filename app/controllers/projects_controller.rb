@@ -62,7 +62,6 @@ class ProjectsController < ApplicationController
   end
 
   def render_index
-
     if params[:edit].present? && params[:task_id].present?
       render turbo_stream: turbo_stream.update("tasks_show", partial: "projects/turbo_frames/tasks_edit_component", locals: { task: Task.find(params[:task_id])})
     elsif params[:task_id].present?
