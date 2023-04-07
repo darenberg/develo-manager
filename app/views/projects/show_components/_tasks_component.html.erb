@@ -51,7 +51,7 @@
 
   <div id="scroll">
       <% if @tags %>
-        <%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;">Show all</i>'.html_safe,  project_path(@project, back: true) %>
+        <%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %>
       <% end %>
       <% @tasks.sorted_tasks_by_done.each do |task| %>
         <%= link_to project_path(@project, task_id: task.id), method: :get, remote: true, style: "text-decoration: none;" do %>
