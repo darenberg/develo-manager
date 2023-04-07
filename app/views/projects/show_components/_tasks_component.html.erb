@@ -16,7 +16,7 @@
               <%= link_to  '<i class="fa-solid fa-chevron-left fs-4" style="color: #ffa200;"></i>'.html_safe,  project_path(@project, back: true) %>
             </div>
             <button data-action="click->new-task#toggleForm" class="form-btn mt-2 ms-3">Add task for this dot</button>
- <%= link_to "Delete this dot", dot_path(@dot), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "destroy-button" %>
+ <%= link_to "Delete dot", dot_path(@dot), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "destroy-button" %>
           </div>
         </div>
           <body class="bg-gradient-primary">

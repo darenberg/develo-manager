@@ -367,3 +367,21 @@ input[type="submit"] {
 .form-inline {
   margin-right: 38px;
 }
+
+.destroy-button {
+  text-decoration: none;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 10px;
+  background: rgb(146, 1, 1);
+  padding: 5px 15px 5px 15px;
+  text-decoration: none;
+  border: none;
+}
+
+
+.destroy-button:hover {
+  background: rgb(77, 0, 0);
+  text-decoration: none;
+}
