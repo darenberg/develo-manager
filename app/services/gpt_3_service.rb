@@ -6,9 +6,11 @@ class Gpt3Service
   end
 
   def content_recommendation(task)
-    prompt = "You are an architectural exeprt, based on the following task description for an architectural project:\n#{task.content}\n\n
+    prompt = "You are an architectural expert, based on the following task description for an architectural project:\n#{task.content}\n\n
     Give me some recommendations to approach this task,
-    Do not include numbers to separate each recommendation, instead, place an R: in front of each recommendation."
+    Do not include numbers to separate each recommendation, instead, place an R: in front of each recommendation.
+    Have roughly 3-4 bullet points at most.
+    Thank you"
 
 
     response = @client.chat(

@@ -13,8 +13,9 @@ class FloorsController < ApplicationController
 
   def destroy
     @floor = Floor.find(params[:id])
+    @project = @floor.project
     @floor.destroy
-    redirect_to project_path, notice: 'floor was successfully destroyed.', status: :see_other
+    redirect_to project_path(@project), notice: 'floor was successfully destroyed.', status: :see_other
   end
 
   def delete_floor
@@ -28,6 +29,7 @@ class FloorsController < ApplicationController
     else
       flash[:error] = "No active button found for floor #{floor}."
     end
+
   end
 
   private

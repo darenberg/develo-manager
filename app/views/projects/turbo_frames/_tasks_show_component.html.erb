@@ -62,7 +62,9 @@
                   <tr>
                     <td><%= user_task.user.email %></td>
                     <td>
-                      <%= button_to "Remove", user_task_path(user_task), method: :delete, data: { confirm: "Are you sure?" } %>
+                      <%= link_to user_task_path(user_task), class: "delete-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this user?" } do %>
+                        <i class="fas fa-trash-alt  text-danger"></i>
+                      <% end %>
                     </td>
                   </tr>
                 <% end %>

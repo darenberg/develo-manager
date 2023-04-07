@@ -242,19 +242,19 @@
 }
 
 .form-btn {
-  display: inline-block;
-  padding: .75rem 1.25rem;
-  border-radius: 10rem;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1rem;
-  background-color: #d96d00;
-  letter-spacing: .15rem;
-  transition: all .3s;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  border: none;
+  display: inline-block !important;
+  padding: .75rem 1.25rem !important;
+  border-radius: 10rem !important;
+  color: #fff !important;
+  text-transform: uppercase !important;
+  font-size: 1rem !important;
+  background-color: #d96d00 !important;
+  letter-spacing: .15rem !important;
+  transition: all .3s !important;
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  border: none !important;
 }
 
 .form-btn:hover {
