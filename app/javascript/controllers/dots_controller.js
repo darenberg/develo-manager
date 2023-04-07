@@ -11,7 +11,7 @@ export default class extends Controller {
     // Add event listeners to each button
     const buttons = document.querySelectorAll('.dotbutton');
 
-    let startX, startY, isDragging = false;
+    let startX, startY ;
     buttons.forEach(function(button) {
       button.addEventListener(stimulus, function(event) {
         isDragging = true;

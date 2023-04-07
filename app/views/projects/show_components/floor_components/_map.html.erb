@@ -10,7 +10,7 @@
               <div class="button-text-dot">
                 <h4><strong >DOT</strong></h4>
               </div>
-              <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn" %>
+              <%= button_to "+", plan_dots_path(plan), method: :post, class:"dot-btn", data: {controller: "reload", action: "click->reload#pageFullReload"} %>
             </div>
               <div class="trick-div">
                 <% plan.dots.each do |dot|%>

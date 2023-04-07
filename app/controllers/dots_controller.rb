@@ -5,12 +5,14 @@ class DotsController < ApplicationController
     @dot.plan = @plan
     @project = @plan.floor.project
     @tasks = @project.tasks
-    if @dot.save
-      redirect_to @project
-      # render "projects/show", status: :ok, location: @project
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @dot.save
+    #   # redirect_to @project
+    #   # render "projects/show", status: :ok, location: @project
+    #   # redirect_to request.referrer || root_path
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
+
   end
 
   def update
@@ -26,7 +28,9 @@ class DotsController < ApplicationController
     @dot = Dot.find(params[:id])
     @project = @dot.plan.floor.project
     @dot.destroy
-    redirect_to @project, notice: 'dot was successfully destroyed.'
+    # redirect_to @project, notice: 'dot was successfully destroyed.'
+    # render "projects/show", status: :ok, location: @project
+    # redirect_to request.referrer || root_path
   end
 
   private
