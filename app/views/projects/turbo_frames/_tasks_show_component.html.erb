@@ -72,7 +72,7 @@
             </table>
           <% end %>
         </div>
-        <div data-controller="spinner-recommendation">
+        <div data-controller="spinner-recommendation" class="ps-4">
           <% if current_user.belongs_to_task?(task) && !current_user.user_task(task)&.recommendation.present? %>
             <h3>Your AI Recommendation:</h3>
             <p><%= link_to "Get Recommendation", project_path(@project, task_id: task.id, recommendation: true), class: "btn btn-primary", data: { action: "click->spinner-recommendation#showSpinner", "spinner-recommendation-target": "button" } %></p>
