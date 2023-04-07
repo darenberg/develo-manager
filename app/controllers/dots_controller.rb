@@ -22,6 +22,13 @@ class DotsController < ApplicationController
     end
   end
 
+  def destroy
+    @dot = Dot.find(params[:id])
+    @project = @dot.plan.floor.project
+    @dot.destroy
+    redirect_to @project, notice: 'dot was successfully destroyed.'
+  end
+
   private
 
   def dot_params
