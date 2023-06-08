@@ -12,9 +12,9 @@
                 </div>
                   <%= simple_form_for(task, url: dot_task_path(task.dot, task), method: :patch) do |f| %>
                     <%= f.input :title %>
-                    <%= f.input :content %>
+                    <%= f.input :content%>
                     <%= f.input :photo, as: :file %>
-                    <%= f.label :tags, "Tags (comma-separated)" %>
+                    <%= f.label :tags, "Tags: [seperate tags by commas]" %>
                     <%= f.text_field :tag_names, value: task.formatted_tags, class: "mb-3" %>
                     <%= f.input :done, as: :boolean %>
                     <%= f.submit "Update", class: "form-btn" %>

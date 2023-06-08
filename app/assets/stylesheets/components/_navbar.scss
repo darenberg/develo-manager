@@ -19,13 +19,32 @@ html, body {
   background-color: rgba(255, 162, 0, 0.85);
 }
 
-.dropdown-item {
+.dropdown-item-text {
+  width: 75%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.dropdown-item-icon {
   text-decoration: none;
+  width: 25%;
   color: #0f0f0f;
   font-weight: 300;
   font-size: 16px;
-  background-color: rgba(255, 162, 0, 0.85);
+  border-left: thin double black !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.dropdown-item {
+  text-decoration: none;
+  width: 25%;
+  color: #0f0f0f;
+  font-weight: 300;
+  font-size: 16px;
+}
+
 .dropdown-item p {
   text-decoration: none;
   color: #0f0f0f;
