@@ -4,11 +4,6 @@ export default class extends Controller {
 
   static targets = ["mapFloors", "drag", "floorButton", "stageBtn"]
 
-  // <script>
-  //   $(document).ready(function() {
-  //     $('.draggable').draggable();
-  //   });
-  // </script>
 
   connect() {
     console.log("HELLO THIS IS CONNECTED!!!");

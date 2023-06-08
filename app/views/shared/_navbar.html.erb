@@ -20,15 +20,11 @@
         </button>
         <ul class="dropdown-menu">
         <% current_user.project_users.each do |project_user| %>
-          <div class="d-flex col">
-              <div class="d-flex align-items-center">
-                <li>
-                  <div class="d-flex col">
-                    <%= link_to project_user.project.title, project_user.project, class: "dropdown-item" %>
-                    <%= link_to  '<i class="fa-solid fa-pencil text-black"></i>'.html_safe, edit_project_path(project_user.project), class: "dropdown-item" %>
-                  </div>
-                </li>
-              </div>
+          <div class="col">
+            <div class="d-flex justify-content-between">
+              <%= link_to project_user.project.title, project_user.project, class: "dropdown-item-text" %>
+              <%= link_to  '<i class="fa-solid fa-pencil text-black"></i>'.html_safe, edit_project_path(project_user.project), class: "dropdown-item-icon" %>
+            </div>
           </div>
         <% end %>
           <li>
