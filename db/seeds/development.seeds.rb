@@ -4,6 +4,8 @@ user = User.create(email: "pana_admin@gmail.com", password: "123456", admin: tru
 User.create!(email: "olivia@gmail.com", password: "123456")
 User.create!(email: "soyiben@gmail.com", password: "123456")
 User.create!(email: "betech35@gmail.com", password: "123456")
+User.create!(email: "juanp.portillob@gmail.com", password: "123456")
+
 
 project = Project.create(title: Faker::Book.title, owner: user)
 
