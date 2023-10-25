@@ -12,11 +12,14 @@
                 </div>
                   <%= simple_form_for(task, url: dot_task_path(task.dot, task), method: :patch) do |f| %>
                     <%= f.input :title %>
-                    <%= f.input :content%>
+                    <%= f.input :content %>
                     <%= f.input :photo, as: :file %>
-                    <%= f.label :tags, "Tags: [seperate tags by commas]" %>
+                    <%= f.label :tags, "Tags: [separate tags by commas]" %>
                     <%= f.text_field :tag_names, value: task.formatted_tags, class: "mb-3" %>
                     <%= f.input :done, as: :boolean %>
+                    <%= f.hidden_field :task_id, value: task.id %>
+                    <%= f.label :user_ids, "Use Cmd + select to add several users at once" %>
+                    <%= f.collection_select :user_ids, @project.project_users.map { |project_user| project_user.user }, :id, :email, {}, { multiple: true, class: "form-control" } %>
                     <%= f.submit "Update", class: "form-btn" %>
                   <% end %>
                 </div>

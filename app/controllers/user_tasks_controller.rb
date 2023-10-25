@@ -1,5 +1,4 @@
 class UserTasksController < ApplicationController
-
   def create
     @user_task = UserTask.new(user_task_params)
     @project = @user_task.task.dot.plan.floor.project
