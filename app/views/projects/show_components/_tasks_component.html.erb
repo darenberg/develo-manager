@@ -3,9 +3,9 @@
     <%= form_with(url: @project, method: "get", class: "form-inline") do |tf| %>
       <div class="form-group mr-3">
         <%= tf.label :tag_name, "Tag", class: "mr-2" %>
-        <%= tf.text_field :tag_name, class: "form-control-sm" %>
+        <%= tf.text_field :tag_name, class: "form-control-sm", oninput: "this.value = this.value.toLowerCase()"  %>
       </div>
-      <%= tf.submit "Search tags", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
+      <%= tf.submit "Search tags", class:"form-btn", data: {toggle: "tooltip"}, title: "Search"%>
     <% end %>
   </div>
     <% if @dot.present? %>
