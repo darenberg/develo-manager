@@ -17,6 +17,8 @@
                     <%= f.label :tags, "Tags (comma-separated)" %>
                     <%= f.text_field :tag_names, value: task.formatted_tags %>
                     <%= f.input :done, as: :boolean  %>
+                    <%= f.label :user_ids, "Select the users you want to add: ctl + select" %>
+                    <%= f.collection_select :user_ids, @project.project_users.map { |project_user| project_user.user }, :id, :email, {}, { multiple: true, class: "form-control" } %>
                     <%= f.submit "Create Task", class: "form-btn" %>
                   <% end %>
                 </div>

@@ -5,7 +5,7 @@
         <%= tf.label :tag_name, "Tag", class: "mr-2" %>
         <%= tf.text_field :tag_name, class: "form-control-sm" %>
       </div>
-       <%= tf.submit "Search tags", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
+      <%= tf.submit "Search tags", class:"form-btn", data: {toggle: "tooltip"}, title: "Search" %>
     <% end %>
   </div>
     <% if @dot.present? %>
@@ -38,6 +38,8 @@
                                 <%= f.label :tag_names, "Tags (comma-separated) Ex: Electric, Plumbing" %>
                                 <%= t.input :tag_names, label: false %>
                               <% end %>
+                              <%= f.label :user_ids, "Use Cmd + select to add several users at once" %>
+                              <%= f.collection_select :user_ids, @project.project_users.map { |project_user| project_user.user }, :id, :email, {}, { multiple: true, class: "form-control" } %>
                             <%= f.submit "Add task for this dot", class: "form-btn" %>
                             <% end %>
                           </div>
