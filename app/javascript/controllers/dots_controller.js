@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="dots"
 export default class extends Controller {
   connect() {
-    const stimulus = 'mousedown';
+    let isDragging = false;
 
     // Get the button container
     const buttonContainer = document.getElementById('button-container');
@@ -11,53 +11,64 @@ export default class extends Controller {
     // Add event listeners to each button
     const buttons = document.querySelectorAll('.dotbutton');
 
-    let startX, startY ;
     buttons.forEach(function(button) {
-      button.addEventListener(stimulus, function(event) {
-        isDragging = true;
-        if (button.dataset.dotX == 0 && button.dataset.dotY == 0) {
-          startX = event.clientX - button.offsetLeft;
-          startY = event.clientY - button.offsetTop;
-        } else {
-          startX = event.clientX - button.dataset.dotX;
-          startY = event.clientY - button.dataset.dotY;
-        }
+      ['mousedown', 'touchstart'].forEach(event => {
+        button.addEventListener(event, function(e) {
+          isDragging = true;
+          const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+          const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+          if (button.dataset.dotX == 0 && button.dataset.dotY == 0) {
+            startX = clientX - button.offsetLeft;
+            startY = clientY - button.offsetTop;
+          } else {
+            startX = clientX - button.dataset.dotX;
+            startY = clientY - button.dataset.dotY;
+          }
+        });
       });
 
-    button.addEventListener('mousemove', function(event) {
-      if (isDragging) {
-        const containerRect = buttonContainer.getBoundingClientRect();
-        const buttonRect = button.getBoundingClientRect();
+      ['mousemove', 'touchmove'].forEach(event => {
+        button.addEventListener(event, function(e) {
+          const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+          const clientY = e.clientY || (e.touches && e.touches[0].clientY);
 
-        const maxX = containerRect.width - buttonRect.width;
-        const maxY = containerRect.height - buttonRect.height;
+          if (isDragging) {
+            const containerRect = buttonContainer.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
 
-        let newX = event.clientX - containerRect.left - (buttonRect.width / 2);
-        let newY = event.clientY - containerRect.top - (buttonRect.height / 2);
+            const maxX = containerRect.width - buttonRect.width;
+            const maxY = containerRect.height - buttonRect.height;
 
-        if (newX < 0) {
-          newX = 0;
-        } else if (newX > maxX) {
-          newX = maxX;
-        }
+            let newX = clientX - containerRect.left - (buttonRect.width / 2);
+            let newY = clientY - containerRect.top - (buttonRect.height / 2);
 
-        if (newY < 0) {
-          newY = 0;
-        } else if (newY > maxY) {
-          newY = maxY;
-        }
+            if (newX < 0) {
+              newX = 0;
+            } else if (newX > maxX) {
+              newX = maxX;
+            }
 
-        button.style.left = newX + 'px';
-        button.style.top = newY + 'px';
+            if (newY < 0) {
+              newY = 0;
+            } else if (newY > maxY) {
+              newY = maxY;
+            }
+
+            button.style.left = newX + 'px';
+            button.style.top = newY + 'px';
+          }
+        });
+      });
+
+      function csrfToken() {
+        return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
       }
-    });
 
-    function csrfToken() {
-      return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    }
+      ['mouseup', 'touchend'].forEach(event => {
+        button.addEventListener(event, function(e) {
+          isDragging = false;
 
-    button.addEventListener('mouseup', function(event) {
-        isDragging = false;
         // Get the dot's ID from the data-dot-id attribute
         const dotId = button.getAttribute('data-dot-id');
         const planId = document.querySelector('img').getAttribute('data-plan-id');
