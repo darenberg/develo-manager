@@ -56,7 +56,7 @@ class TasksController < ApplicationController
 
   def create_tags(tags)
     @task.tags.destroy_all
-    split_tags = tags.split(", ")
+    split_tags = tags.downcase.split(", ").uniq
     split_tags.each do |tag|
       new_tag = Tag.create(tag_name: tag)
       @task.tags << new_tag
