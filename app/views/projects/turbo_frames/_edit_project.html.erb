@@ -16,9 +16,23 @@
                   <% end %>
                   <%= form_with model: ProjectUser.new, url: project_project_users_path(@project), method: :post, local: true do |f| %>
                     <%= f.hidden_field :project_id, value: @project.id %>
-                    <%= f.select :user_id, User.all.map { |user| [user.email, user.id] }, { include_blank: "Manage Users:" }, class: "form-control" %>
+
+                    <div data-controller="autocomplete" data-autocomplete-project-id-value="<%= @project.id %>">
+                      <input
+                        class="form-control"
+                        data-action="input->autocomplete#search"
+                        data-autocomplete-target="input"
+                        type="text"
+                        placeholder="Search users...">
+                      <div data-autocomplete-target="results" class="autocomplete-results"></div>
+                    </div>
+
+                    <%= f.hidden_field :user_id, data: { autocomplete_target: "userId" } %>
+
                     <%= f.submit "Add User", class: "btn-user-tasks" %>
                   <% end %>
+
+
                   <div class="d-flex justify-content-between mt-4">
                   <div class="me-2">
                     <h3>Project Collaborators:</h3>

@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :projects do
+    resources :project_users do
+      get 'autocomplete', on: :collection, as: 'autocomplete'
+    end
+  end
+
+  resources :projects do
     resources :floors, only: [:create, :update]
     resources :project_users, only: [:create, :update]
   end
