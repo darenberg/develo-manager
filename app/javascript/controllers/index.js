@@ -24,3 +24,6 @@ application.register("spinner-recommendation", SpinnerRecommendationController)
 
 import TaskFilterController from "./task_filter_controller"
 application.register("task-filter", TaskFilterController)
+
+import AutocompleteController from "./autocomplete_controller"
+application.register("autocomplete", AutocompleteController)
